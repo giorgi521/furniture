@@ -1,6 +1,21 @@
-import '@/styles/globals.css'
+import type { ReactElement, ReactNode } from 'react'
 import type { AppProps } from 'next/app'
+import '@/styles/globals.css'
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
+ 
+type AppPropsWithLayout = AppProps & {
+  Component: {
+    getLayout?: (page: ReactElement) => ReactNode
+  }
+}
+ 
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page)
+ 
+  return getLayout(<Component {...pageProps} />)
 }
