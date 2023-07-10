@@ -11,7 +11,7 @@ const Index = () => {
         >   
          <div className='flex gap-8 pt-8'>
             {CategoryImages.map(({src,id}) => (
-                <div key={id}>
+                <div key={id} className='rounded-md overflow-hidden'>
                     <Image src={src} alt='category' className='w-[300px] h-[300px] cursor-pointer object-cover'/>
                 </div>
             ))}

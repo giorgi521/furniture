@@ -48,12 +48,12 @@ export const SOCIALMEDIA = [
     {
         id:2,
         icon: <Github />,
-        link: 'https://www.github.com/'
+        link: 'https://github.com/giorgi521'
     },
     {
         id:3,
         icon: <Instagram />,
-        link: 'https://www.instagram.com/'
+        link: 'https://www.instagram.com/giorgi_gogoladze__/'
     },
     {
         id:4,

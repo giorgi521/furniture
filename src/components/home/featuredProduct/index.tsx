@@ -7,7 +7,11 @@ const FutureProducts = () => {
     <Categorys  
         title='Future Product'
     >   
-    <Card />
+    <div className="flex flex-wrap gap-4 item-center justify-center">
+     {[1,2,3,4].map(()=>(
+        <Card />
+     ))}
+     </div>
     </Categorys>
     );
 };

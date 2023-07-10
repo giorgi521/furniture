@@ -2,27 +2,27 @@ export const Menu =[
     {
         id: 1,
         name:"shop all",
-        link:"/shop-all"
+        link:"/product-category/shop-all"
     },
     {
         id: 2,
         name:"decor",
-        link:"/decor"
+        link:"/product-category/decor"
     },
     {
         id: 3,
         name:"office",
-        link:"/office"
+        link:"/product-category/office"
     },
     {
         id: 4,
         name:"living room",
-        link:"/living-room"
+        link:"/product-category/living-room"
     },
     {
         id: 5,
         name:"bedroom",
-        link:"/bedroom"
+        link:"/product-category/bedroom"
     }
 ]
 
@@ -41,12 +41,7 @@ export const RightMenu =[
     {
         id: 3,
         name:"track order",
-        link:"/track order"
-    },
-    {
-        id: 4,
-        name:"help",
-        link:"/help"    
+        link:"/track-order"
     },
     {
         id: 5,

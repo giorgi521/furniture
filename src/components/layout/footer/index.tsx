@@ -6,7 +6,7 @@ import InputSubscription from './input';
 import Instagram from '@/components/helper/icons/instagram';
 const Footer = () => {
     return (
-        <div className="flex flex-col bg-darkGray">
+        <div className="flex flex-col bg-darkGray w-full ">
         <div className='flex justify-between items-start h-[400px] pt-[50px] px-24'>
             <div className='w-[244px]'>
                <Image src={logo} alt="logo" />

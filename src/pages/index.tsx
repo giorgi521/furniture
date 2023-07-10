@@ -5,21 +5,18 @@ import Header from '@/components/home/header';
 import Partners from '@/components/home/partners';
 import Category from '@/components/home/category';
 import ChooseUs from '@/components/home/chooseUs';
-import Image from 'next/image';
-import backgroundImage from 'public/assets/img/background-image.jpeg';
 import FutureProducts from '@/components/home/featuredProduct/index';
+import Products from '@/components/home/products/index';
 
 const Index = () => {
   return (
     <>
-      <Image src={backgroundImage} alt="furniture" className="fixed z-[-1] mt-0"/>
       <Header />
-        <div className="bg-white">
         <Partners />
         <Category />
         <FutureProducts />
+        <Products />
         <ChooseUs />
-      </div>
     </>
   );
 }; 
