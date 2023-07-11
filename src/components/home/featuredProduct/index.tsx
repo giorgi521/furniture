@@ -8,8 +8,8 @@ const FutureProducts = () => {
         title='Future Product'
     >   
     <div className="flex flex-wrap gap-4 item-center justify-center">
-     {[1,2,3,4].map(()=>(
-        <Card />
+     {[1,2,3,4].map((item)=>(
+        <Card  key={item}/>
      ))}
      </div>
     </Categorys>

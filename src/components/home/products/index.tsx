@@ -24,7 +24,7 @@ const Products = () => {
             <div className='flex flex-col gap-4 w-[35%]'>
                 <div className='text-xl pb-4 '>Care Instructions</div>
                    {PRODUCT.map(({id, title}) => (
-                         <div className='flex gap-6'>
+                         <div className='flex gap-6' key={id}>
                             <MdOutlineDoneAll />
                             <div key={id}>{title}</div>
                          </div>
