@@ -7,17 +7,11 @@ import Category from '@/components/home/category';
 import ChooseUs from '@/components/home/chooseUs';
 import FutureProducts from '@/components/home/featuredProduct/index';
 import Products from '@/components/home/products/index';
-import { createClient } from "next-sanity";
+import { gql } from "@apollo/client";
+import { initializeApollo } from "../shared/lib/apolloClient";
+import {FUNRITURE_QUERY} from '@/api/allFurniture';
 
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  apiVersion: "2022-03-25",
-  useCdn: false
-});
-
-const Index = ({furniture}:{furniture:any}) => {
-  console.log(furniture);
+const Index = () => {
   return (
     <>
         <Header />
@@ -36,11 +30,16 @@ Index.getLayout  = (page:ReactElement) => <Layout>{page}</Layout>;
 export default Index;
 
 export async function getStaticProps() {
-  const furniture = await client.fetch(`*[_type == "furniture"]`);
+  const apolloClient = initializeApollo();
+
+
+  await apolloClient.query({
+    query:FUNRITURE_QUERY
+  });
 
   return {
     props: {
-      furniture
+      initialApolloState: apolloClient.cache.extract(),
     }
   };
 }
