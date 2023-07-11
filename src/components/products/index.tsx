@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Button from '@/components/shared/button';
 import MasterCard from '@/components/helper/icons/masterCard';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
+import  Maestro  from '@/components/helper/icons/maestro';
+import  Discover  from '@/components/helper/icons/discover';
+import  Visa  from '@/components/helper/icons/visa';
 
 const Data = {
         id: 1,
@@ -41,6 +44,25 @@ const colors = [
         },
     ]
 
+const Cards = [
+        {
+            id: 1,
+            icon: <MasterCard />,
+        },
+        {
+            id: 2,
+            icon: <Maestro />,
+        },
+        {
+            id: 3,
+            icon: <Discover />,
+        },
+        {
+            id: 4,
+            icon: <Visa />,
+        },
+]
+
 const SingleProducts = () => {
 
     return (
@@ -75,9 +97,11 @@ const SingleProducts = () => {
 
                 <div className='flex flex-col gap-2 border-b-2 border-darkGray py-6'>
                    <div className='text-gray text-lg'>Guaranteed Safe Checkout</div>
-                   <div className='flex gap-4 justify-center rounded-lg border-2 border-darkGray py-4'>
-                    {[1,2,3,4].map((item)=> (
-                        <MasterCard />
+                   <div className='flex gap-2 justify-center py-4 '>
+                    {Cards.map(({id, icon})=> (
+                        <div className='rounded-2xl overflow-hidden' key={id}>
+                         {icon}
+                        </div>
                     ))}
                    </div>
                 </div>
