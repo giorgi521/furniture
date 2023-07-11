@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install .config/husky"
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
@@ -37,6 +38,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "husky": "^8.0.3"
   }
 }
