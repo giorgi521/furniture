@@ -4,7 +4,7 @@ const Discover = () => {
     return (
         <svg width="70px" height="50px" viewBox="0 -140 780 780" xmlns="http://www.w3.org/2000/svg">
 
-<g fill-rule="evenodd">
+<g fillRule="evenodd">
 
 <path d="M54.992 0C0 0 0 0 0 0v0C0 0 0 0 0 501h670.016C755.373 501 780 476.37 780 445.996V0C0 0 755.381 0 725.008 0H54.992z" fill="#4D4D4D"/>
 

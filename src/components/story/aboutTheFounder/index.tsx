@@ -3,7 +3,7 @@ import backgroundImage from 'public/assets/img/background.jpg';
 import Image from 'next/image';
 
 const Founder = () => {
-    console.log(backgroundImage)
+    
     return (
         <div className='px-24 flex items-center h-[600px] bg-darkGray border-b-[1px] border-gray'>
             <div className='w-[40%] flex flex-col gap-4'>

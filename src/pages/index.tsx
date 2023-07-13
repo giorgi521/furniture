@@ -7,11 +7,12 @@ import Category from '@/components/home/category';
 import ChooseUs from '@/components/home/chooseUs';
 import FutureProducts from '@/components/home/featuredProduct/index';
 import Products from '@/components/home/products/index';
-import { gql } from "@apollo/client";
 import { initializeApollo } from "../shared/lib/apolloClient";
-import {FUNRITURE_QUERY} from '@/api/allFurniture';
+import {PARTNERS_QUERY} from '@/api/allPartners';
+import {FUTUREP_PRODUCTS_QUERY} from '@/api/futureProducts';
 
 const Index = () => {
+
   return (
     <>
         <Header />
@@ -32,10 +33,16 @@ export default Index;
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
+  await apolloClient.query({
+    query: PARTNERS_QUERY
+  })
 
   await apolloClient.query({
-    query:FUNRITURE_QUERY
-  });
+    query:FUTUREP_PRODUCTS_QUERY,
+    variables: {
+      products: "future product"
+  }
+  })
 
   return {
     props: {

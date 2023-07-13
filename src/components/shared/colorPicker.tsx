@@ -1,29 +1,54 @@
-import * as React from 'react';
-import Box from '@mui/joy/Box';
-import FormLabel from '@mui/joy/FormLabel';
-import Radio, { radioClasses } from '@mui/joy/Radio';
+import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
+import { useState } from 'react';
 
-export default function Color() {
+interface Props {
+  image:string[],
+  correctImage:string,
+  setImages:React.Dispatch<React.SetStateAction<string>>
+}
+
+
+export const  ColorPicker=({image,setImages,correctImage}:Props) =>{
+
+  const ImageColor = [
+    {
+      id:1,
+      value:image[0],
+      color: "#000000",
+    },
+    {
+      id:2,
+      value:image[1],
+      color: "#8f6453;",
+    },
+    {
+      id:3,
+      value:image[2],
+      color: "#dabca2",
+    },
+  ]
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setImages(event.target.value);
+  };
+
   return (
-      
       <RadioGroup
         aria-labelledby="product-color-attribute"
-        defaultValue="warning"
+        defaultValue={image[0]}
         sx={{ gap: 2, flexWrap: 'wrap', flexDirection: 'row' }}
       >
-        {(
-          ['primary', 'neutral',  'warning'] as const
-        ).map((color) => (
+        {ImageColor.map(({id,color,value}) => (
           <Sheet
-            key={color}
+            key={id}
+            style={{ backgroundColor: color }}
             sx={{
               position: 'relative',
               width: 30,
               height: 30,
               flexShrink: 0,
-              bgcolor: `${color}.solidBg`,
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
@@ -32,29 +57,14 @@ export default function Color() {
           >
             <Radio
               overlay
-              variant="solid"
-              color={color}
-              value={color}
-              slotProps={{
-                input: { 'aria-label': color },
-                radio: {
-                  sx: {
-                    display: 'contents',
-                    '--variant-borderWidth': '2px',
-                  },
-                },
-              }}
-              sx={{
-                '--joy-focus-outlineOffset': '4px',
-                '--joy-palette-focusVisible': (theme) =>
-                  theme.vars.palette[color][500],
-                [`& .${radioClasses.action}.${radioClasses.focusVisible}`]: {
-                  outlineWidth: '2px',
-                },
-              }}
+              onChange={handleChange}
+              value={value}
+              checked={ correctImage === value}
             />
           </Sheet>
         ))}
       </RadioGroup>
   );
 }
+
+export default ColorPicker;

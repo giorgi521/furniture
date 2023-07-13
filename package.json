@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "yarn type-generate && next dev",
+    "build": "yarn type-generate && next build",
+    "start": "yarn type-generate && next start",
     "lint": "next lint",
-    "prepare": "husky install .config/husky"
+    "prepare": "husky install .config/husky",
+    "type-generate": "graphql-codegen --config codegen.ts",
+    "tg": "yarn type-generate",
+    "watch": "graphql-codegen -w"
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
@@ -16,6 +19,7 @@
     "@mui/joy": "^5.0.0-alpha.86",
     "@mui/material": "^5.13.7",
     "@types/google-map-react": "^2.1.7",
+    "@types/lodash": "^4.14.195",
     "@types/node": "20.3.3",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
@@ -26,6 +30,7 @@
     "google-map-react": "^2.2.1",
     "google-maps-react": "^2.0.6",
     "graphql": "^16.7.1",
+    "lodash": "^4.17.21",
     "next": "13.4.7",
     "next-sanity": "^5.1.1",
     "postcss": "8.4.24",
@@ -34,10 +39,12 @@
     "react-icons": "^4.10.1",
     "swiper": "^10.0.3",
     "tailwindcss": "3.3.2",
-    "typescript": "5.1.6",
+    "typescript": "^5.1.6",
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^4.0.1",
+    "@graphql-codegen/client-preset": "^4.0.1",
     "@types/react-router-dom": "^5.3.3",
     "husky": "^8.0.3"
   }

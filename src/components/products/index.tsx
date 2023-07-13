@@ -2,32 +2,13 @@ import React from 'react';
 import backgroundImage from 'public/assets/img/background-image.jpeg';
 import Image from 'next/image';
 import Button from '@/components/shared/button';
-import MasterCard from '@/components/helper/icons/masterCard';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
-import  Maestro  from '@/components/helper/icons/maestro';
-import  Discover  from '@/components/helper/icons/discover';
-import  Visa  from '@/components/helper/icons/visa';
-
-const Data = {
-        id: 1,
-        name:"product Name 10",
-        subTitle: "Living Room, Office",
-        minPrice: '80$',
-        maxPrice: '100$',
-        image: backgroundImage,
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing, elit. Proin vestibulum erat leo, id pulvinar lorem maximus sit amet. orem ipsum dolor sit amet, consectetur adipiscing, elit. Proin vestibulum erat leo, id pulvinar lorem maximus sit amet. orem ipsum dolor sit amet, consectetur adipiscing, elit. Proin vestibulum erat leo, id pulvinar lorem maximus sit amet.",
-    }
-
-const colors = [
-        {
-            id: 1,
-            name: 'textHv',
-        },
-        {
-            id: 2,
-            name: 'darkGray',
-        },
-    ]
+import { useRouter } from 'next/router';
+import { useSingleFurniture } from '@/api/furniture/singleFurniture';
+import {ColorPicker} from '@/components/shared/colorPicker';
+import { Cards } from './helper';
+import { useState } from 'react';
+import  Price  from '@/components/shared/price';
 
  const benefits = [
         {
@@ -44,48 +25,41 @@ const colors = [
         },
     ]
 
-const Cards = [
-        {
-            id: 1,
-            icon: <MasterCard />,
-        },
-        {
-            id: 2,
-            icon: <Maestro />,
-        },
-        {
-            id: 3,
-            icon: <Discover />,
-        },
-        {
-            id: 4,
-            icon: <Visa />,
-        },
-]
-
 const SingleProducts = () => {
-
+     const route = useRouter()
+     const { data } = useSingleFurniture(route.query.id as string)
+     const [image, setImage] = useState(data.image[0])
+     
     return (
         <div className='flex justify-between px-24 py-14'>
-            <Image src={Data.image} alt="product" className='w-[650px] h-[750px] object-cover rounded-lg'/>
+            <Image
+             src={image}
+             alt="product"
+             className='object-cover rounded-lg'
+             width="650"
+             height="600"
+             />
             <div className='flex flex-col gap-4 w-[45%]'>
                 <div>breadCrumbs</div>
-                <div className='text-base  text-gray'>{Data.subTitle}</div>
-                <div className='text-4xl'>{Data.name}</div>
+                <div className='text-base  text-gray'>test</div>
+                <div className='text-4xl'>{data.title}</div>
                 <div className='flex gap-2 items-end text-2xl'>
-                    <div className='text-gold'>{Data.minPrice} - {Data.maxPrice}</div>
+                    <div className='text-gold'>
+                    <Price 
+                        minPrice={data.minPrice}
+                        maxPrice={data.maxPrice}
+                        image={data.image}
+                        currentImage={image}
+                    />
+                    </div>
                     <div className='text-base text-gray'>& Free Shipping</div>
                 </div>
-                <div className='text-gray'>{Data.desc}</div>
-                <div className='flex gap-4'>
-                    {colors.map((item)=> (
-                    <div
-                     key={item.id}
-                     className={`rounded-full bg-${item.name} w-6 h-6 flex
-                     cursor-pointer`}
-                   />
-                    ))}
-                </div>
+                <div className='text-gray'>{data.description}</div>
+                    <ColorPicker 
+                      image={data.image}
+                      correctImage={image}
+                      setImages={setImage}
+                    />
                 <div className='flex gap-4 border-y-2 border-darkGray py-6'>
                     <div className='flex items-center rounded border-2 gap-6 px-6'>
                       <div className='flex items-center justify-center border-r-2 pr-6 cursor-pointer text-xl'>-</div>

@@ -28,7 +28,6 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 const CustomizedBreadcrumbs= () =>{
     const router = useRouter();
     const {slug} = router.query;
-    console.log(router)
 
     const handleClick =(event: React.MouseEvent<Element, MouseEvent>)=> {
      event.preventDefault();
