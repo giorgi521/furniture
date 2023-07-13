@@ -1,7 +1,6 @@
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
-import { useState } from 'react';
 
 interface Props {
   image:string[],

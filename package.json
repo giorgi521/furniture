@@ -6,7 +6,7 @@
     "dev": "yarn type-generate && next dev",
     "build": "yarn type-generate && next build",
     "start": "yarn type-generate && next start",
-    "lint": "next lint",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "prepare": "husky install .config/husky",
     "type-generate": "graphql-codegen --config codegen.ts",
     "tg": "yarn type-generate",
@@ -23,6 +23,7 @@
     "@types/node": "20.3.3",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
     "autoprefixer": "10.4.14",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.7",
@@ -47,5 +48,13 @@
     "@graphql-codegen/client-preset": "^4.0.1",
     "@types/react-router-dom": "^5.3.3",
     "husky": "^8.0.3"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "yarn tg",
+      "prettier --write",
+      "eslint --fix",
+      "bash -c tsc --noEmit"
+    ]
   }
 }
