@@ -1,4 +1,4 @@
-import { isArray, isBoolean, isObject, isString, map } from 'lodash';
+import { isArray, isBoolean, isObject, isString } from 'lodash';
 // https://stackoverflow.com/a/42349521
 
 

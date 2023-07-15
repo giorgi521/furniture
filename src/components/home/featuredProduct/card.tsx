@@ -1,4 +1,4 @@
-// disable-eslint
+/* eslint-disable */
 import React,{useState} from 'react';
 import ColorPicker from '@/components/shared/colorPicker';
 import Popover from '@mui/material/Popover';
