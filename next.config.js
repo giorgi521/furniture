@@ -13,6 +13,6 @@ const nextConfig = {
   images: {
     domains: ['localhost', 'www.thesun.co.uk', 'cdn.sanity.io'],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

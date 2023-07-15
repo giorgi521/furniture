@@ -1,6 +1,6 @@
 import React from 'react';
-import Image from 'next/image'
-import logo from 'public/assets/img/logo-regular.png'
+import Image from 'next/image';
+import logo from 'public/assets/img/logo-regular.png';
 import { Menu } from './helper';
 import {RightMenu} from '@/components/layout/header/helper';
 import List from '@/components/layout/header/list';

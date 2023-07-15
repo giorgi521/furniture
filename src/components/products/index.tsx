@@ -23,12 +23,12 @@ import  Price  from '@/components/shared/price';
             id: 3,
             name:'Secure Payments',
         },
-    ]
+    ];
 
 const SingleProducts = () => {
-     const route = useRouter()
-     const { data } = useSingleFurniture(route.query.id as string)
-     const [image, setImage] = useState(data.image[0])
+     const route = useRouter();
+     const { data } = useSingleFurniture(route.query.id as string);
+     const [image, setImage] = useState(data.image[0]);
      
     return (
         <div className='flex justify-between px-24 py-14'>

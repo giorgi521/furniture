@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { gql } from '@/root/generated/graphql.ts/gql';
-import {FutureProductQuery, FutureProductQueryVariables} from '../../generated/graphql.ts/graphql';
+import {FutureProductQuery, FutureProductQueryVariables} from '../../../generated/graphql.ts/graphql';
 import { useMemo } from 'react';
 import {getProp} from '@/components/helper/functions/typeSafeData';
 
@@ -43,11 +43,11 @@ const TypeSafeData = (data:FutureProductQuery['allFurniture'])=> {
         ], []),
         minPrice: getProp(() => item!.minPrice!, 0),
         maxPrice: getProp(() => item!.maxPrice!, 0),
-      }
+      };
     })
-  ),[])
-  return futureProducts
-}
+  ),[]);
+  return futureProducts;
+};
 
 export type FutureProductsType = ReturnType<typeof TypeSafeData>
 
@@ -62,13 +62,13 @@ export const useFutureProducts = (products:string) => {
         });
 
       const futureProducts = useMemo(
-        () => TypeSafeData(futureProductsQuery!.data!.allFurniture)
-      , [futureProductsQuery])
+        () => TypeSafeData(futureProductsQuery.data?.allFurniture  as FutureProductQuery['allFurniture'])
+      , [futureProductsQuery]);
     
 
 
     return { 
       ...futureProductsQuery,
       data:futureProducts
-    }
-}
+    };
+};

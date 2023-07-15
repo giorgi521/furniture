@@ -80,6 +80,6 @@ const InputSubscription=()=> {
       </FormControl>
     </form>
   );
-}
+};
 
-export default InputSubscription
+export default InputSubscription;

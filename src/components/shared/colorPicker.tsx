@@ -20,14 +20,14 @@ export const  ColorPicker=({image,setImages,correctImage}:Props) =>{
     {
       id:2,
       value:image[1],
-      color: "#8f6453;",
+      color: "#8f6453",
     },
     {
       id:3,
       value:image[2],
       color: "#dabca2",
     },
-  ]
+  ];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setImages(event.target.value);
@@ -64,6 +64,6 @@ export const  ColorPicker=({image,setImages,correctImage}:Props) =>{
         ))}
       </RadioGroup>
   );
-}
+};
 
 export default ColorPicker;

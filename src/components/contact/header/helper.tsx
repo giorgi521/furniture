@@ -21,4 +21,4 @@ export const Contact = [
         title:"Address",
         desc: 'Tbilisi, P.qavtaradze 34'
     }
-]
+];

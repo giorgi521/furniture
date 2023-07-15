@@ -19,4 +19,4 @@ export const PRODUCT =[
         id: 5,
         title: 'Lorem ipsum dolor sit amet',
     },
-]
+];

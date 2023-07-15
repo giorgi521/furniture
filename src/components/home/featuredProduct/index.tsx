@@ -1,7 +1,7 @@
 import React from 'react';
 import Categorys from '@/components/shared/category';
 import Card from './card';
-import { useFutureProducts } from '@/api/futureProducts';
+import { useFutureProducts } from '@/api/futureProduct';
 
 const FutureProducts = () => {
     const { data } = useFutureProducts("future product");
@@ -11,10 +11,10 @@ const FutureProducts = () => {
         title='Future Product'
     >   
     <div className="flex flex-wrap gap-4 item-center justify-center">
-    {data.map((item)=>(
+    {data.map((item,i)=>(
         <Card
             item={item}
-            key={item.title}
+            key={i}
          />
      ))}
      </div>

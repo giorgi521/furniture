@@ -29,7 +29,7 @@ export const  SINGLE_FURNITURE_QUERY = gql(`
    }
  }
 
-`)
+`);
 
 const typeSafeSingleFurniture = ( data:FurnitureQuery['Furniture']) => {
     return {
@@ -42,8 +42,8 @@ const typeSafeSingleFurniture = ( data:FurnitureQuery['Furniture']) => {
         getProp(()=> data!.secondImage!.asset!.url!, ''),
         getProp(()=> data!.thirdImage!.asset!.url!, ''),
         ], [])
-    }
-}
+    };
+};
 
 export const useSingleFurniture = (id:string)=> {
 
@@ -54,15 +54,15 @@ export const useSingleFurniture = (id:string)=> {
                 id
             }
         }
-    )
+    );
 
     const singleFurniture = useMemo(()=> (
         typeSafeSingleFurniture(singleFurnitureQuery.data?.Furniture)
-    ),[singleFurnitureQuery.data?.Furniture])
+    ),[singleFurnitureQuery.data?.Furniture]);
 
     return {
         ...singleFurnitureQuery,
         data:singleFurniture,
-    }
+    };
 
-}
+};

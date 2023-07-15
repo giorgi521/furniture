@@ -37,7 +37,7 @@ export const FOOTERINFO = [
             },
         ]
     }
-]
+];
 
 export const SOCIALMEDIA = [
     // {
@@ -60,4 +60,4 @@ export const SOCIALMEDIA = [
         icon: <Facebook />,
         link: 'https://www.facebook.com/giorgi.gogoladze.92798/'
     }
-]
+];

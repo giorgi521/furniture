@@ -2,7 +2,7 @@ import React from 'react';
 import Categorys from '@/components/shared/category';
 import TextField from '@mui/material/TextField';
 import Button from '@/components/shared/button';
-import {styled} from '@mui/system'
+import {styled} from '@mui/system';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 

@@ -32,8 +32,8 @@ const CustomizedBreadcrumbs= () =>{
     const handleClick =(event: React.MouseEvent<Element, MouseEvent>)=> {
      event.preventDefault();
      console.info('You clicked a breadcrumb.');
-     router.back()
-    }
+     router.back();
+    };
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
@@ -52,6 +52,6 @@ const CustomizedBreadcrumbs= () =>{
       </Breadcrumbs>
     </div>
   );
-}
+};
 
 export default CustomizedBreadcrumbs;

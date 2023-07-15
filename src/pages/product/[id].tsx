@@ -14,7 +14,7 @@ const Products = () => {
 
 export default Products;
 
-Products.getLayout = (page:ReactElement)=> <Layout>{page}</Layout> 
+Products.getLayout = (page:ReactElement)=> <Layout>{page}</Layout>; 
 
 export async function getStaticPaths() {
     
@@ -25,12 +25,12 @@ export async function getStaticPaths() {
    
     const paths =  getTypeSafeFurniture(allFurnitureId.data.allFurniture).map((item)=>({
         params: {id: item?.id}  
-    }))
+    }));
 
     return {
           paths,
           fallback: 'blocking' 
-    }
+    };
   }
 
 export async function getStaticProps({params}:{params:{id:string}}) {
@@ -47,4 +47,4 @@ export async function getStaticProps({params}:{params:{id:string}}) {
         props: {
             initialApolloState: apolloClient.cache.extract(),
      },
-}}
+};}

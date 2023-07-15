@@ -1,7 +1,7 @@
-import deliveryIcon from 'public/assets/img/delivery-truck.png'
-import creditIcon from 'public/assets/img/credit.png'
-import shieldIcon from 'public/assets/img/shield.png'
-import returnIcon from 'public/assets/img/return.png'
+import deliveryIcon from 'public/assets/img/delivery-truck.png';
+import creditIcon from 'public/assets/img/credit.png';
+import shieldIcon from 'public/assets/img/shield.png';
+import returnIcon from 'public/assets/img/return.png';
 
 export const Data = [
     {
@@ -28,4 +28,4 @@ export const Data = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec.",
         icon: returnIcon
     }
-]
+];

@@ -7,13 +7,13 @@ export const FUNRITURE_QUERY_PATH = gql(`
   allFurniture {
     _id
 }}
-`)
+`);
 
 
 export const getTypeSafeFurniture = (data: AllFurnitureQuery["allFurniture"]) => {
   return data.map((item) => {
     return {
       id: getProp(() => item!._id!, ''),
-    }
-  })
-}
+    };
+  });
+};

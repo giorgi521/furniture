@@ -24,7 +24,7 @@ export const Menu =[
         name:"bedroom",
         link:"/product-category/bedroom"
     }
-]
+];
 
 
 export const RightMenu =[
@@ -48,4 +48,4 @@ export const RightMenu =[
         name:"log in",
         link:"/log-in"
     }
-]
+];

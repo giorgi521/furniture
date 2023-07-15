@@ -19,4 +19,4 @@ export const Cards = [
         id: 4,
         icon: <Visa />,
     },
-]
+];

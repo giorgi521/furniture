@@ -1,6 +1,6 @@
-import type { ReactElement, ReactNode } from 'react'
-import type { AppProps } from 'next/app'
-import '@/styles/globals.css'
+import type { ReactElement, ReactNode } from 'react';
+import type { AppProps } from 'next/app';
+import '@/styles/globals.css';
 import {ApolloProvider } from '@apollo/client';
 import { useApollo } from '../shared/lib/apolloClient';
 
@@ -18,11 +18,11 @@ type AppPropsWithLayout = AppProps & {
  
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const apolloClient = useApollo(pageProps.initialApolloState);
-  const getLayout = Component.getLayout ?? ((page) => page)
+  const getLayout = Component.getLayout ?? ((page) => page);
  
   return getLayout(
     <ApolloProvider client={apolloClient}>
        <Component {...pageProps} />
     </ApolloProvider>
-  )
+  );
 }

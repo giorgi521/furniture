@@ -19,4 +19,4 @@ const Story = () => {
 
 export default Story;
 
-Story.getLayout = (page: ReactElement) => <Layout>{page}</Layout>
+Story.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;

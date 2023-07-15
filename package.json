@@ -52,7 +52,6 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "yarn tg",
-      "prettier --write",
       "eslint --fix",
       "bash -c tsc --noEmit"
     ]
