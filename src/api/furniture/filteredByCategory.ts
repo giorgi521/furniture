@@ -70,7 +70,7 @@ export const useFilteredFurniture = (slug:string)=> {
 
     const typeSafeFilteredFurniture = useMemo(()=>( 
      getTypeSafeFurniture(singleFurnitureQuery.data?.allFurniture as FurnitureByCategoryQuery['allFurniture']
-     )),[]);
+     )),[singleFurnitureQuery]);
 
 
     return {

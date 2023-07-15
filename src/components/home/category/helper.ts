@@ -1,4 +1,4 @@
-import Image from 'public/assets/img/background-image.jpeg'
+import Image from 'public/assets/img/background-image.jpeg';
 export const CategoryImages =[ 
 {
     id:1,
@@ -16,4 +16,4 @@ export const CategoryImages =[
     id: 4,
     src: Image,
 },
-]
+];

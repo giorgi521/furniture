@@ -1,4 +1,5 @@
-import Image from 'public/assets/img/background-image.jpeg'
+import Image from 'public/assets/img/background-image.jpeg';
+
 export const partnersImages =[ 
 {
     id: 1,
@@ -72,4 +73,4 @@ export const partnersImages =[
     id: 18,
     src: Image,
 },
-]
+];

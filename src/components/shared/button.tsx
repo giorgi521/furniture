@@ -2,14 +2,11 @@ import { ButtonBaseProps } from '@mui/material';
 import React from 'react';
 
 interface Props {
-    width?: string;
-    height?: string;
-    color?: string;
     children: React.ReactNode;
     type?: ButtonBaseProps['type'];
 }
 
-const Button  = ({width,height, color,children, type ,...props}:Props) => {
+const Button  = ({children, type ,...props}:Props) => {
     return (
         <button
          type={type || 'button'}

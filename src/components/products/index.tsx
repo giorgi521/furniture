@@ -1,5 +1,4 @@
 import React from 'react';
-import backgroundImage from 'public/assets/img/background-image.jpeg';
 import Image from 'next/image';
 import Button from '@/components/shared/button';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';

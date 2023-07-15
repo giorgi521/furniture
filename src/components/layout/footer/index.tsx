@@ -3,7 +3,7 @@ import {FOOTERINFO, SOCIALMEDIA} from '@/components/layout/footer/helper';
 import Image from 'next/image';
 import logo from 'public/assets/img/logo-regular.png';
 import InputSubscription from './input';
-import Instagram from '@/components/helper/icons/instagram';
+
 const Footer = () => {
     return (
         <div className="flex flex-col bg-darkGray w-full ">
@@ -16,8 +16,8 @@ const Footer = () => {
                   <div key={id} className='flex flex-col gap-[3.2em]'>
                         <h3 className='text-xl'>{title}</h3>
                         <div>
-                        {links.map(({id,name, link}) => (
-                           <div key={id}>
+                        {links.map(({name, link}) => (
+                           <div key={link}>
                                  <a href={link} className='text-gold text-sm'>{name}</a>
                            </div>
                           ))}

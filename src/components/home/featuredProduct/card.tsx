@@ -1,28 +1,13 @@
+// disable-eslint
 import React,{useState} from 'react';
 import ColorPicker from '@/components/shared/colorPicker';
-import {FaOpencart} from 'react-icons/fa';
-import {LiaEyeSolid} from 'react-icons/lia';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import {FutureProductsType} from '@/api/futureProduct';
 import Price from '@/components/shared/price';
 import { useRouter } from 'next/router';
-
-const CardIcons = [
- {
-    id:1,
-    icon: <FaOpencart className='w-4 h-4'/>,
-    route: '/product',
-    poper:'Select Option'
- },
- {
-    id:2,
-    icon: <LiaEyeSolid className="w-4 h-4"/>,
-    route: '/product',
-    poper:'Quick View'
- }
-];
+import {CardIcons} from '@/components/home/featuredProduct/helper';
 
 interface Props {
   item:FutureProductsType[0]
