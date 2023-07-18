@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Button from '@/components/shared/button';
+import {Button} from '@/components/ui/button';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 import { useSingleFurniture } from '@/api/furniture/singleFurniture';

@@ -13,6 +13,8 @@
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "import"],
   "rules": {
+    "eslint.autoFixOnSave": true,
+    
     "@typescript-eslint/semi": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-shadow": ["error"],

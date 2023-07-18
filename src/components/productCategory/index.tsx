@@ -1,8 +1,8 @@
 import Card from "@/components/home/featuredProduct/card";
 import { useRouter } from "next/router";
-import Button from "../shared/button";
 import CustomizedBreadcrumbs from "@/components/shared/breadCrumbs";
 import {useFilteredFurniture} from '@/api/furniture/filteredByCategory';
+import {Button} from '@/components/ui/button'
 
 const ProductCategorys = () => {
     const router = useRouter();
@@ -23,9 +23,9 @@ const ProductCategorys = () => {
                 </div>
                 ))}
              </div>
-             <div className="flex w-full justify-center">
+             <div className="flex w-full justify-center gap-4">
                 <Button>
-                 fetch more
+                  fetch more
                 </Button>
              </div>
              </div>
