@@ -18,11 +18,7 @@ export default Decor;
 
 export const getStaticPaths = async () => {
     return {
-        paths: [
-            { params: { slug: 'bedroom' } },
-            { params: { slug: 'decor' } },
-            { params: { slug: 'furniture' } }
-        ],
+        paths: [],
         fallback: 'blocking'
     };
 };
