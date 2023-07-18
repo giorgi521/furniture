@@ -1,36 +1,57 @@
 /* eslint-disable */
 import React,{useState} from 'react';
-import ColorPicker from '@/components/shared/colorPicker';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import {FutureProductsType} from '@/api/futureProduct';
-import Price from '@/components/shared/price';
 import { useRouter } from 'next/router';
 import {CardIcons} from '@/components/home/featuredProduct/helper';
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+
+export enum Currency {
+  GEL = '₾',
+  USD = '$',
+  EUR = '€',
+}
+
+
+interface PriceProps {
+  minPrice:number,
+  maxPrice:number
+}
+
 
 interface Props {
   item:FutureProductsType[0]
 }
 
 
-const Card = ({item}:Props) => {
+export const Price = ({minPrice,maxPrice}:PriceProps) => {
+  return <div className='flex gap-4'>
+     <div>{minPrice} {Currency.USD}</div>
+     {"-"}
+     <div>{maxPrice} {Currency.USD}</div>
+  </div>
+}
+
+    
+
+
+const Card = ({item:{
+  id,
+  minPrice,
+  maxPrice,
+  image,
+  title,
+}}:Props) => {
   const router = useRouter();
-  const {
-    id,
-    minPrice,
-    maxPrice,
-    image,
-    title,
-  }= item;
-
-   const [correctImage, setCorrectImage] = useState<string>(image[0]);
-
-   
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [showMore, setShowMore] = useState<boolean>(false);
   const [popperId, setPopperId] = useState<number | null>(null);
+
+  //set the first image as default on first mount
+  const [choosenImage, setChoosenImage] = useState<string>(image[0]);
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>,id:number) => {
     setAnchorEl(event.currentTarget);
@@ -48,6 +69,12 @@ const Card = ({item}:Props) => {
 
    const HandleFurnitureRounte = ()=> {
       router.push(`/product/${id}`);
+   };
+
+
+   const radioGrounHandle = (value: string) => {
+    setChoosenImage(value);
+    console.log(value)
    };
 
     return (
@@ -96,7 +123,7 @@ const Card = ({item}:Props) => {
               </div>
             </div>
             <Image
-              src={correctImage}
+              src={choosenImage}
               alt="logo"
               width="250"
               height="300"
@@ -109,16 +136,20 @@ const Card = ({item}:Props) => {
                 <Price 
                   minPrice={minPrice}
                   maxPrice={maxPrice}
-                  image={image}
-                  currentImage={correctImage}
                 />
                 </div>
                 <div className='flex gap-2'>
-                  <ColorPicker
-                    image={image}
-                    correctImage={correctImage}
-                    setImages={setCorrectImage} 
-                  />  
+                <RadioGroup  defaultValue={image[0]} onValueChange={radioGrounHandle}>
+                     {image.map((item,i)=> (
+                      <RadioGroupItem
+                       checked={choosenImage === item}
+                       key={i}
+                       value={item}
+                       id="option-two" 
+                       />
+                      ))}
+                </RadioGroup>
+
                 </div>
             </div>
             </div>
