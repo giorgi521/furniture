@@ -1,12 +1,13 @@
 /* eslint-disable */
-import React,{useState} from 'react';
+import React,{useMemo, useState} from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import {FutureProductsType} from '@/api/futureProduct';
 import { useRouter } from 'next/router';
 import {CardIcons} from '@/components/home/featuredProduct/helper';
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import {RadioGroup, RadioGroupItem, BORDER_OF_RADIO_GROUP_ENUM} from '@/components/ui/radio-group';
+import clsx from 'clsx';
 
 export enum Currency {
   GEL = '₾',
@@ -52,6 +53,18 @@ const Card = ({item:{
 
   //set the first image as default on first mount
   const [choosenImage, setChoosenImage] = useState<string>(image[0]);
+
+
+  const addColorInImage = useMemo(()=>{
+    return image.map((item,i)=> {
+      return {
+        id:i,
+        item,
+        color:BORDER_OF_RADIO_GROUP_ENUM[i]
+      }
+  })
+  },[image])
+   
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>,id:number) => {
     setAnchorEl(event.currentTarget);
@@ -139,11 +152,12 @@ const Card = ({item:{
                 />
                 </div>
                 <div className='flex gap-2'>
-                <RadioGroup  defaultValue={image[0]} onValueChange={radioGrounHandle}>
-                     {image.map((item,i)=> (
+                <RadioGroup defaultValue={image[0]} onValueChange={radioGrounHandle}>
+                     {addColorInImage.map(({item,id,color})=> (
                       <RadioGroupItem
+                       className={clsx(choosenImage === item && "bg-textHv", color)}
                        checked={choosenImage === item}
-                       key={i}
+                       key={id}
                        value={item}
                        id="option-two" 
                        />

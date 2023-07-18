@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           "before:content-[''] before:absolute before:w-full before:h-full  before:bg-textHv before:top-0 before:left-0  before:z-[-1] before:translate-x-[-100%] hover:before:translate-x-[0] before:transition-all before:duration-500 before:ease-in-out",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "before:content-[''] before:absolute before:w-full before:h-full  before:bg-gray before:top-0 before:left-0  before:z-[-1] before:translate-x-[-100%] hover:before:translate-x-[0] before:transition-all before:duration-500 before:ease-in-out",
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary:

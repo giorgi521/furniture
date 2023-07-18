@@ -20,6 +20,7 @@ module.exports = {
         textHv: "#1FD4AB",
         gold: "#c19a83",
         gray: "	#707070",
+        lightGold:"#8f6453",
         darkGray:"#F1F2F2",
         lightGray:"rgba(0,0,0,0.07)",
         white: "#ffffff",
