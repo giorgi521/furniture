@@ -4,11 +4,16 @@ import { getProp } from '@/components/helper/functions/typeSafeData';
 import { useQuery } from '@apollo/client';
 import { useMemo } from 'react';
 
+export enum LIMIT_OF_FURNITURE  {
+  limit = 6,
+  offset = 0
+}
+
 export const  FILTERED_FURNITURE_BY_CATEGORY = gql(`
-        query furnitureByCategory($slug :String!) {
-           allFurniture(where :{categories:{slug:{ current:{ eq: $slug}}}}){
+        query furnitureByCategory($slug :String!,$limit: Int!  $offset: Int!) {
+           allFurniture(limit: $limit, offset:$offset,where :{categories:{slug:{ current:{ eq: $slug}}}}){
              _id
-             title
+             title 
              description
              minPrice
              maxPrice
@@ -58,23 +63,29 @@ const getTypeSafeFurniture = (data:FurnitureByCategoryQuery['allFurniture'])=> {
 
 export type FurnitureType = ReturnType<typeof getTypeSafeFurniture>
 
-export const useFilteredFurniture = (slug:string)=> {
-    const singleFurnitureQuery = useQuery<FurnitureByCategoryQuery,FurnitureByCategoryQueryVariables>(
+export const useFilteredFurniture = ({slug, limit = LIMIT_OF_FURNITURE.limit, offset = LIMIT_OF_FURNITURE.offset}:{
+    slug: string,
+    limit?:number,
+    offset:number
+})=> {
+    const furnitureByCategory = useQuery<FurnitureByCategoryQuery,FurnitureByCategoryQueryVariables>(
         FILTERED_FURNITURE_BY_CATEGORY,
         {
             variables: {
-                slug
+                slug:slug,
+                offset:offset ,
+                limit: limit
             }
         }
     );
 
     const typeSafeFilteredFurniture = useMemo(()=>( 
-     getTypeSafeFurniture(singleFurnitureQuery.data?.allFurniture as FurnitureByCategoryQuery['allFurniture']
-     )),[singleFurnitureQuery]);
+     getTypeSafeFurniture(furnitureByCategory.data?.allFurniture as FurnitureByCategoryQuery['allFurniture']
+     )),[furnitureByCategory]);
 
 
     return {
-        singleFurnitureQuery,
+        ...furnitureByCategory,
         data: typeSafeFilteredFurniture
     };
 
