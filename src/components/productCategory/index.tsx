@@ -5,11 +5,12 @@ import {useFilteredFurniture, LIMIT_OF_FURNITURE} from '@/api/furniture/filtered
 import {Button} from '@/components/ui/button'
 import { useState } from "react";
 import Loader from "../shared/loader";
+import { useTotalFurniture } from "@/api/furniture/allFurnitureId";
 
 const ProductCategorys = () => {
     const router = useRouter();
     const {slug} = router.query;
-    const [disable, setDisable] = useState(false)
+    const totalFurniture = useTotalFurniture(slug as string)
     const {data,fetchMore,loading} = useFilteredFurniture({
       slug:slug as string,
       offset:LIMIT_OF_FURNITURE.offset,
@@ -26,9 +27,6 @@ const ProductCategorys = () => {
          // @ts-ignore
          updateQuery: (prev, {fetchMoreResult}) =>{
             if(!fetchMoreResult) return
-            if(fetchMoreResult.allFurniture.length < LIMIT_OF_FURNITURE.limit) {
-               setDisable(true)
-            }
             return  {
                prev,
                allFurniture:[
@@ -39,6 +37,7 @@ const ProductCategorys = () => {
         })
       
     }
+    
     return (
         <div className="flex flex-col justify-center items-center py-16">
             <div className="w-[70%]">
@@ -57,7 +56,7 @@ const ProductCategorys = () => {
              <div className="flex w-full justify-center gap-4">
                 <Button 
                  className="w-44 flex gap-2 items-center justify-center"
-                 disabled={loading || disable}
+                 disabled={loading || totalFurniture === data.length}
                  onClick= {fetchMoreHandler}
                 >
                   {loading && 
