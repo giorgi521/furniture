@@ -5,24 +5,21 @@ import {MdOutlineDoneAll} from 'react-icons/md';
 
 const Products = () => {
     return (
-        <div className='p-12 flex justify-between items-center'>
+        <div className='p-6 md:p-12 flex flex-col gap-12 2xl:justify-between items-center xl:flex-row'>
             <div
             style={{
                 backgroundImage: `url(${backgroundImage.src})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',  
             }}
-            className='w-[60%] h-[551px] rounded-lg relative flex flex-col items-center justify-center text-white gap-2'
+            className='bg-no-repeat bg-center bg-cover w-full h-[300px] xl:w-[80%] lg:h-[551px] 2xl:w-[60%] rounded-lg relative flex flex-col items-center justify-center text-white gap-2'
             >
                 <div className='text-sm font-bold '>New arrivals</div>
-                <div className='text-2xl font-bold'>Brand new, modern lamps collection</div>
+                <div className='md:text-2xl font-bold'>Brand new, modern lamps collection</div>
                 <div className='text-base font-bold '>Ideal for offices, bedrooms and all in between.</div>
             <div>
             </div>
             </div>
-            <div className='flex flex-col gap-4 w-[35%]'>
-                <div className='text-xl pb-4 '>Care Instructions</div>
+            <div className='flex flex-col gap-4 2xl:w-[35%] text-start'>
+                <div className='text-xl pb-4'>Care Instructions</div>
                    {PRODUCT.map(({id, title}) => (
                          <div className='flex gap-6' key={id}>
                             <MdOutlineDoneAll />

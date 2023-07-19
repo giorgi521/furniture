@@ -4,27 +4,13 @@ import {Button} from '@/components/ui/button';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 import { useSingleFurniture } from '@/api/furniture/singleFurniture';
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import {RadioGroup, RadioGroupItem, BORDER_OF_RADIO_GROUP_ENUM} from '@/components/ui/radio-group';
 import { Cards } from './helper';
-import { useState } from 'react';
+import {useState, useMemo} from 'react';
 import {Price} from '@/components/home/featuredProduct/card';
-
- const benefits = [
-        {
-            id: 1,
-            name:'No-Risk Money Back Guarantee!',
-        },
-        {
-            id: 2,
-            name:'No Hassle Refunds',
-        },
-        {
-            id: 3,
-            name:'Secure Payments',
-        },
-    ];
-
-    
+import clsx from 'clsx';
+import {Benefits} from '@/components/products/helper';
+  
 
 const SingleProducts = () => {
      const route = useRouter();
@@ -36,6 +22,16 @@ const SingleProducts = () => {
             description
      } } = useSingleFurniture(route.query.id as string);
      const [choosenImage, setChoosenImage] = useState(image[0]);
+
+     const addColorInImage = useMemo(()=>{
+        return image.map((item,i)=> {
+          return {
+            id:i,
+            item,
+            color:BORDER_OF_RADIO_GROUP_ENUM[i]
+          }
+      })
+      },[image])
 
      const radioGrounHandle = (value: string) => {
         setChoosenImage(value);
@@ -66,17 +62,18 @@ const SingleProducts = () => {
                 </div>
                 <div className='text-gray'>{description}</div>
                 <RadioGroup  defaultValue={image[0]} onValueChange={radioGrounHandle}>
-                     {image.map((item,i)=> (
+                     {addColorInImage.map(({item,id,color})=> (
                       <RadioGroupItem
+                       className={clsx(choosenImage === item && "bg-textHv", color)}
                        checked={choosenImage === item}
-                       key={i}
+                       key={id}
                        value={item}
                        id="option-two" 
                        />
                       ))}
-                </RadioGroup>
-                <div className='flex gap-4 border-y-2 border-darkGray py-6'>
-                    <div className='flex items-center rounded border-2 gap-6 px-6'>
+                 </RadioGroup>
+                      <div className='flex gap-4 border-y-2 border-darkGray py-6'>
+                      <div className='flex items-center rounded border-2 gap-6 px-6'>
                       <div className='flex items-center justify-center border-r-2 pr-6 cursor-pointer text-xl'>-</div>
                       <div className='flex items-center justify-center'>0</div>
                       <div className='flex items-center justify-center border-l-2 pl-6 cursor-pointer text-xl'>+</div>
@@ -97,10 +94,10 @@ const SingleProducts = () => {
 
                 <div>
                     <div className='pb-4 text-lg'>Free shipping on orders over $50!</div>
-                    {benefits.map((item)=> (
-                      <div key={item.id} className='flex gap-2 text-gray'>
+                    {Benefits.map((item)=> (
+                      <div key={item.id} className='flex gap-2 text-gray items-center'>
                         <IoCheckmarkDoneCircle  className='text-textHv text-2xl'/>
-                        <div className=''>{item.name}</div>
+                        <span>{item.name}</span>
                       </div>
                     ))}
                 </div>

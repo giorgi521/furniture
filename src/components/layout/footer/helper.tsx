@@ -1,8 +1,29 @@
-import {RightMenu} from '@/components/layout/header/helper';
-// import LinkedIn from '@/components/helper/icons/LinkedIn';
 import Github from '@/components/helper/icons/github';
 import Instagram from '@/components/helper/icons/instagram';
 import Facebook from '@/components/helper/icons/facebook';
+
+ const RightMenu =[
+    {
+        id: 1,
+        name:"story",
+        link:"/story"
+    },
+    {
+        id: 2,
+        name:"contact",
+        link:"/contact"
+    },
+    {
+        id: 3,
+        name:"track order",
+        link:"/track-order"
+    },
+    {
+        id: 5,
+        name:"log in",
+        link:"/log-in"
+    }
+];
 
 
 export const FOOTERINFO = [

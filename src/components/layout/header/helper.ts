@@ -1,51 +1,20 @@
-export const Menu =[
+export const OTHER =[
     {
         id: 1,
-        name:"shop all",
-        link:"/product-category/shop-all"
-    },
-    {
-        id: 2,
-        name:"decor",
-        link:"/product-category/decor"
-    },
-    {
-        id: 3,
-        name:"office",
-        link:"/product-category/office"
-    },
-    {
-        id: 4,
-        name:"living room",
-        link:"/product-category/living-room"
-    },
-    {
-        id: 5,
-        name:"bedroom",
-        link:"/product-category/bedroom"
-    }
-];
-
-
-export const RightMenu =[
-    {
-        id: 1,
-        name:"story",
+        title:"story",
+        desc:"lorem ipsum dolor sit amet, consectetur",
         link:"/story"
     },
     {
         id: 2,
-        name:"contact",
+        title:"contact",
+        desc:"lorem ipsum dolor sit amet, consectetur",
         link:"/contact"
     },
     {
         id: 3,
-        name:"track order",
+        title:"track order",
+        desc:"lorem ipsum dolor sit amet, consectetur",
         link:"/track-order"
     },
-    {
-        id: 5,
-        name:"log in",
-        link:"/log-in"
-    }
 ];

@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import {CardIcons} from '@/components/home/featuredProduct/helper';
 import {RadioGroup, RadioGroupItem, BORDER_OF_RADIO_GROUP_ENUM} from '@/components/ui/radio-group';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 export enum Currency {
   GEL = '₾',
@@ -87,31 +88,30 @@ const Card = ({item:{
 
    const radioGrounHandle = (value: string) => {
     setChoosenImage(value);
-    console.log(value)
    };
 
     return (
         <div
          onMouseOver={()=>setShowMore(true)}
          onMouseLeave={()=>setShowMore(false)}
-         className='w-[433px] h-[600px] p-4 flex flex-col justify-between items-center
-          overflow-hidden bg-darkGray relative rounded-md'
+         className='w-[333px] h-[500px] p-4 flex flex-col justify-between items-center
+          overflow-hidden bg-darkGray relative rounded-md 2xl:w-[433px] 2xl:h-[600px]'
          >
             <div className="flex justify-between w-full">
                 <div className='text-sm rounded-xl border-[1px] border-white drop-shadow-lg
                  p-2 h-8 flex items-center justify-center bg-white'>sale!</div>
-              <div className={`flex flex-col ${showMore ? 'opacity-1' : 'opacity-0'} gap-4
-               items-center justify-center transition-all duration-700`}>
-                  {CardIcons.map(({id,icon})=>(
-                    <div
-                      key={id}
+              <div className={`flex flex-col ${showMore ? 'opacity-1' : 'md:opacity-0'} gap-4
+               items-center justify-center transition-all duration-700 z-[2]`}>
+                  {CardIcons.map(({id:i,icon})=>(
+                    <Link
+                      key={i}
                       className='p-2 rounded-full bg-white drop-shadow-lg cursor-pointer'
-                      onMouseEnter={(event)=>{handlePopoverOpen(event,id);}}
+                      onMouseEnter={(event)=>{handlePopoverOpen(event,i);}}
                       onMouseLeave={handlePopoverClose}
-                      onClick={HandleFurnitureRounte}
+                      href={`/product/${id}`}
                       >
                        {icon}
-                    </div>
+                    </Link>
                     
                   )) }
                   <Popover
@@ -143,7 +143,7 @@ const Card = ({item:{
               className={`${showMore ? 'scale-125' : 'scale-1'} transition-all duration-700 object-cover`}
               
             />
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center z-[2]'>
                 <div className="text-2xl">{title}</div>
                 <div className='text-base text-gray'>
                 <Price 

@@ -18,10 +18,10 @@ const Index = () => {
 
   return (
     <>
-        <Header />
+        <Header /> 
         <Partners />
         <Category />
-        <FutureProducts />
+         <FutureProducts />
         <Products />
         <ChooseUs />
     </>

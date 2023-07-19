@@ -2,7 +2,8 @@ import MasterCard from '@/components/helper/icons/masterCard';
 import Maestro from '@/components/helper/icons/maestro';
 import Discover from '@/components/helper/icons/discover';
 import Visa from '@/components/helper/icons/visa';
-export const Cards = [
+
+ const Cards = [
     {
         id: 1,
         icon: <MasterCard />,
@@ -20,3 +21,22 @@ export const Cards = [
         icon: <Visa />,
     },
 ];
+ const Benefits = [
+    {
+        id: 1,
+        name:'No-Risk Money Back Guarantee!',
+    },
+    {
+        id: 2,
+        name:'No Hassle Refunds',
+    },
+    {
+        id: 3,
+        name:'Secure Payments',
+    },
+];
+
+export {
+    Benefits,
+    Cards
+}

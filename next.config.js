@@ -6,10 +6,7 @@ const nextConfig = {
     NEXT_PUBLIC_SANITY_GRAPHQL_URL: process.env.NEXT_PUBLIC_SANITY_GRAPHQL_URL,
   },
   reactStrictMode: true,
-  i18n: {
-    locales: ['en-US', 'ka-GE'],
-    defaultLocale: 'ka-GE',
-  },
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   images: {
     domains: ['localhost', 'www.thesun.co.uk', 'cdn.sanity.io'],
   },

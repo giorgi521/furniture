@@ -1,7 +1,8 @@
 import Image from 'public/assets/img/background-image.jpeg';
 import {FaOpencart} from 'react-icons/fa';
 import {LiaEyeSolid} from 'react-icons/lia';
-export const FUTUREPRODUCS =[ 
+
+ const FUTUREPRODUCS =[ 
 {
     id: 1,
     src: Image,
@@ -20,7 +21,7 @@ export const FUTUREPRODUCS =[
 },
 ];
 
-export const CardIcons = [
+ const CardIcons = [
     {
        id:1,
        icon: <FaOpencart className='w-4 h-4'/>,
@@ -34,3 +35,9 @@ export const CardIcons = [
        poper:'Quick View'
     }
 ];
+
+
+export {
+    FUTUREPRODUCS,
+    CardIcons
+}
