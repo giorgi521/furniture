@@ -1,7 +1,7 @@
 import Layout from '@/components/layout';
 import React,{ReactElement} from 'react';
 import ProductCategorys from '@/components/productCategory/index';
-import { initializeApollo } from "../../shared/lib/apolloClient";
+import { initializeApollo } from "../shared/lib/apolloClient";
 import {FILTERED_FURNITURE_BY_CATEGORY} from '@/api/furniture/filteredByCategory';
 import {FurnitureByCategoryQuery, FurnitureByCategoryQueryVariables} from '@/root/generated/graphql.ts/graphql';
 const Decor = () => {

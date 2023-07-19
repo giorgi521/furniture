@@ -11,7 +11,7 @@ const Index = () => {
          <div className='grid gap-2  grid-cols-2 xl:flex flex-wrap sm:gap-24 pt-8 justify-center xl:gap-8'>
             {data.slice(0,4).map(({image,id,title,slug}) => (
                 <Link href={{
-                    pathname: '/product-category/[slug]',
+                    pathname: '/[slug]',
                     query: { slug },
                 }} 
                 key={id}

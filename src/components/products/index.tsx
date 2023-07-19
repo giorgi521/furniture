@@ -10,6 +10,7 @@ import {useState, useMemo} from 'react';
 import {Price} from '@/components/home/featuredProduct/card';
 import clsx from 'clsx';
 import {Benefits} from '@/components/products/helper';
+import StyledBreadcrumb from '@/components/shared/breadCrumbs';
   
 
 const SingleProducts = () => {
@@ -48,7 +49,7 @@ const SingleProducts = () => {
              height="600"
              />
             <div className='flex flex-col gap-4 w-[45%]'>
-                <div>breadCrumbs</div>
+            <StyledBreadcrumb />
                 <div className='text-base  text-gray'>test</div>
                 <div className='text-4xl'>{title}</div>
                 <div className='flex gap-2 items-end text-2xl'>

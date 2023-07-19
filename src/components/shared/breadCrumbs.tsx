@@ -5,6 +5,12 @@ import Chip from '@mui/material/Chip';
 import { FcHome } from 'react-icons/fc';
 import { useRouter } from 'next/router';
 
+
+
+interface Props {
+  isProduct?: boolean;
+}
+
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
     theme.palette.mode === 'light'
@@ -25,9 +31,9 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   };
 }) as typeof Chip;
 
-const CustomizedBreadcrumbs= () =>{
+const CustomizedBreadcrumbs= ({isProduct}:Props) =>{
     const router = useRouter();
-    const {slug} = router.query;
+    const slug = router.asPath.split('/').slice(1);
 
     const handleClick =(event: React.MouseEvent<Element, MouseEvent>)=> {
      event.preventDefault();
@@ -38,15 +44,15 @@ const CustomizedBreadcrumbs= () =>{
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
+          className='cursor-pointer'
           component="a"
-          href="#"
+          href="/"
           label="Home"
           icon={<FcHome />}
         />
-        <StyledBreadcrumb component="a" href="#" label="Catalog" />
         <StyledBreadcrumb
-          label={slug}
-        //   deleteIcon={<ExpandMoreIcon />}
+          label={isProduct? "products" : slug}
+          component="b"
           onDelete={handleClick}
         />
       </Breadcrumbs>
