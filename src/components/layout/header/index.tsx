@@ -10,17 +10,12 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import {OTHER} from '@/components/layout/header/helper';
+import { useRouter } from 'next/router';
+import clsx from 'clsx';
 
 const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "shop all",
-    href: "/shop-all",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
   {
     title: "decor",
     href: "/decor",
@@ -47,32 +42,43 @@ const components: { title: string; href: string; description: string }[] = [
 ]
 
 export function Navigation() {
-    
+    const {asPath} = useRouter();
+
+    const isCategory = React.useMemo(()=>{ 
+       return  components.some(({href})=> href === asPath)
+      },[asPath])
+
+
+    const isOther = React.useMemo(()=>{ 
+        return  OTHER.some(({link})=> link === asPath)
+     },[asPath])
+
   return (
     <NavigationMenu className='px-24 py-2 flex justify-between'>
       <div>
       <NavigationMenuList>
         <Link href="/" className='w-[244px] cursor-pointer'>
-               <Image src={logo} alt="logo" />
+            <Image src={logo} alt="logo" />
         </Link>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Category</NavigationMenuTrigger>
+          <NavigationMenuTrigger className={clsx(isCategory && 'text-textHv')}>Category</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+              {components.map(({title,href:link, description}) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={title}
+                  title={title}
+                  href={link}
+                  className={clsx(link === asPath && "bg-darkGray")}
                 >
-                  {component.description}
+                  {description}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>other</NavigationMenuTrigger>
+          <NavigationMenuTrigger className={clsx(isOther && 'text-textHv')}>other</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
@@ -92,20 +98,13 @@ export function Navigation() {
                 </NavigationMenuLink>
               </li>
             {OTHER.map(({id, title, desc, link})=>(
-                <ListItem href={link} title={title} key={id}>
+                <ListItem href={link} title={title} key={id} className={clsx(link === asPath &&"bg-darkGray")}>
                  {desc}
                 </ListItem>
             ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        {/* <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem> */}
       </NavigationMenuList>
     </div>
    <div>

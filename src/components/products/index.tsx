@@ -36,7 +36,6 @@ const SingleProducts = () => {
 
      const radioGrounHandle = (value: string) => {
         setChoosenImage(value);
-        console.log(value)
        };
      
     return (
@@ -49,7 +48,9 @@ const SingleProducts = () => {
              height="600"
              />
             <div className='flex flex-col gap-4 w-[45%]'>
-            <StyledBreadcrumb />
+            <StyledBreadcrumb
+              isProduct={true}
+             />
                 <div className='text-base  text-gray'>test</div>
                 <div className='text-4xl'>{title}</div>
                 <div className='flex gap-2 items-end text-2xl'>

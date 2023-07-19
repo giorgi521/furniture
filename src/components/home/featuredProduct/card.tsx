@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React,{useMemo, useState} from 'react';
+import React,{useEffect, useMemo, useState} from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
@@ -52,7 +52,6 @@ const Card = ({item:{
   const [showMore, setShowMore] = useState<boolean>(false);
   const [popperId, setPopperId] = useState<number | null>(null);
 
-  //set the first image as default on first mount
   const [choosenImage, setChoosenImage] = useState<string>(image[0]);
 
 
@@ -65,7 +64,10 @@ const Card = ({item:{
       }
   })
   },[image])
-   
+
+  useEffect(()=> {
+    setChoosenImage(image[0]);
+  },[image])
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>,id:number) => {
     setAnchorEl(event.currentTarget);

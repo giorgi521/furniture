@@ -4,6 +4,7 @@ import ProductCategorys from '@/components/productCategory/index';
 import { initializeApollo } from "../shared/lib/apolloClient";
 import {FILTERED_FURNITURE_BY_CATEGORY} from '@/api/furniture/filteredByCategory';
 import {FurnitureByCategoryQuery, FurnitureByCategoryQueryVariables} from '@/root/generated/graphql.ts/graphql';
+import {FURNITURE_CATEGORY_QUERY} from '@/api/category/index';
 const Decor = () => {
     return (
         <ProductCategorys />
@@ -17,9 +18,18 @@ export default Decor;
 
 
 export const getStaticPaths = async () => {
+    const apolloClient = initializeApollo();
+    const category = await apolloClient.query({
+        query: FURNITURE_CATEGORY_QUERY,
+    })
+
+   const paths = category.data?.allCategory.map(({slug,_id})=>({
+        params: {slug: slug?.current ,id:_id}
+   }))
+
     return {
-        paths: [],
-        fallback: 'blocking'
+        paths,
+        fallback: false
     };
 };
 
@@ -32,7 +42,6 @@ export const getStaticProps = async ({params}:{params:{slug:string}}) => {
             slug:params.slug
         }
     });
-
 
 
     return {
