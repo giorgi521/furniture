@@ -3,7 +3,7 @@ import React,{ReactElement} from 'react';
 import ProductCategorys from '@/components/productCategory/index';
 import { initializeApollo } from "../shared/lib/apolloClient";
 import {FILTERED_FURNITURE_BY_CATEGORY, LIMIT_OF_FURNITURE} from '@/api/furniture/filteredByCategory';
-import {FurnitureByCategoryQuery, FurnitureByCategoryQueryVariables} from '@/root/generated/graphql.ts/graphql';
+import {FurnitureByCategoryQuery, FurnitureByCategoryQueryVariables, SortOrder} from '@/root/generated/graphql.ts/graphql';
 import {FURNITURE_CATEGORY_QUERY} from '@/api/category/index';
 
 const Decor = () => {
@@ -42,7 +42,8 @@ export const getStaticProps = async ({params}:{params:{slug:string}}) => {
         variables:{
             slug:params.slug,
             offset:LIMIT_OF_FURNITURE.offset,
-            limit: LIMIT_OF_FURNITURE.limit
+            limit: LIMIT_OF_FURNITURE.limit,
+            sortbyminPrice: SortOrder.Asc
         }
     });
 

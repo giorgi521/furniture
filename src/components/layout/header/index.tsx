@@ -44,15 +44,6 @@ const components: { title: string; href: string; description: string }[] = [
 export function Navigation() {
     const {asPath} = useRouter();
 
-    const isCategory = React.useMemo(()=>{ 
-       return  components.some(({href})=> href === asPath)
-      },[asPath])
-
-
-    const isOther = React.useMemo(()=>{ 
-        return  OTHER.some(({link})=> link === asPath)
-     },[asPath])
-
   return (
     <NavigationMenu className='px-24 py-2 flex justify-between'>
       <div>
@@ -61,7 +52,7 @@ export function Navigation() {
             <Image src={logo} alt="logo" />
         </Link>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={clsx(isCategory && 'text-textHv')}>Category</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Category</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {components.map(({title,href:link, description}) => (
@@ -78,7 +69,7 @@ export function Navigation() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={clsx(isOther && 'text-textHv')}>other</NavigationMenuTrigger>
+          <NavigationMenuTrigger>other</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">

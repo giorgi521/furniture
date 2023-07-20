@@ -1,5 +1,5 @@
 import { gql } from '@/root/generated/graphql.ts/gql';
-import {FurnitureByCategoryQuery, FurnitureByCategoryQueryVariables} from '@/root/generated/graphql.ts/graphql';
+import {FurnitureByCategoryQuery, FurnitureByCategoryQueryVariables, SortOrder} from '@/root/generated/graphql.ts/graphql';
 import { getProp } from '@/components/helper/functions/typeSafeData';
 import { useQuery } from '@apollo/client';
 import { useMemo } from 'react';
@@ -10,8 +10,8 @@ export enum LIMIT_OF_FURNITURE  {
 }
 
 export const  FILTERED_FURNITURE_BY_CATEGORY = gql(`
-        query furnitureByCategory($slug :String!,$limit: Int!  $offset: Int!) {
-           allFurniture(limit: $limit, offset:$offset,where :{categories:{slug:{ current:{ eq: $slug}}}}){
+        query furnitureByCategory($slug :String!,$limit: Int!  $offset: Int!, $sortbyminPrice:SortOrder!) {
+           allFurniture(sort:{minPrice:$sortbyminPrice},limit: $limit, offset:$offset,where :{categories:{slug:{ current:{ eq: $slug}}}}){
              _id
              title 
              description
@@ -63,10 +63,11 @@ const getTypeSafeFurniture = (data:FurnitureByCategoryQuery['allFurniture'])=> {
 
 export type FurnitureType = ReturnType<typeof getTypeSafeFurniture>
 
-export const useFilteredFurniture = ({slug, limit = LIMIT_OF_FURNITURE.limit, offset = LIMIT_OF_FURNITURE.offset}:{
+export const useFilteredFurniture = ({slug, limit = LIMIT_OF_FURNITURE.limit,sortbyminPrice, offset = LIMIT_OF_FURNITURE.offset}:{
     slug: string,
     limit?:number,
     offset:number
+    sortbyminPrice:SortOrder
 })=> {
     const furnitureByCategory = useQuery<FurnitureByCategoryQuery,FurnitureByCategoryQueryVariables>(
         FILTERED_FURNITURE_BY_CATEGORY,
@@ -74,7 +75,8 @@ export const useFilteredFurniture = ({slug, limit = LIMIT_OF_FURNITURE.limit, of
             variables: {
                 slug:slug,
                 offset:offset ,
-                limit: limit
+                limit: limit,
+                sortbyminPrice: sortbyminPrice
             }
         }
     );

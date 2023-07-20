@@ -35,13 +35,10 @@ const CustomizedBreadcrumbs= ({isProduct}:Props) =>{
     const router = useRouter();
     const slug = router.asPath.split('/').slice(1);
 
-    const handleClick =(event: React.MouseEvent<Element, MouseEvent>)=> {
-     event.preventDefault();
-     console.info('You clicked a breadcrumb.');
-     router.back();
-    };
+      
+
   return (
-    <div role="presentation" onClick={handleClick}>
+    <div role="presentation" onClick={()=>router.push("/")}>
       <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
           className='cursor-pointer'
@@ -51,9 +48,10 @@ const CustomizedBreadcrumbs= ({isProduct}:Props) =>{
           icon={<FcHome />}
         />
         <StyledBreadcrumb
-          label={isProduct? "products" : slug}
+          className='text-black font-bold'
+          label={isProduct? "products" : router.query.slug}
           component="b"
-          onDelete={handleClick}
+          onDelete={()=>router.push("/")}
         />
       </Breadcrumbs>
     </div>
