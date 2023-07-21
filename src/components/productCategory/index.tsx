@@ -15,7 +15,7 @@ import {
 import {SortOrder} from '@/root/generated/graphql.ts/graphql';
 import { useEffect, useState } from "react";
 import FurnitureSkeleton from "./skeleton";
-import clsx from "clsx";
+import CustomMotionDiv from "../shared/CustomMotionDiv";
 
 
 const ProductCategorys = () => {
@@ -40,13 +40,9 @@ const ProductCategorys = () => {
          // @ts-ignore
          updateQuery: (prev, {fetchMoreResult}) =>{
             if(!fetchMoreResult) return
-            return  {
-               prev,
-               allFurniture:[
-                  ...prev.allFurniture , ...fetchMoreResult.allFurniture
-               ]
-            }
-         },
+            return Object.assign({}, prev, {
+               allFurniture: [...prev.allFurniture ?? [], ...fetchMoreResult?.allFurniture ?? []]
+             })},
         })
       
     }
@@ -68,7 +64,9 @@ const ProductCategorys = () => {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center py-16">
+        <CustomMotionDiv
+          className="flex flex-col justify-center items-center py-16"
+         >
             <div className="w-[70%]">
             <CustomizedBreadcrumbs />
             <div className="text-6xl mt-4 mb-8">{slug}</div>
@@ -111,7 +109,7 @@ const ProductCategorys = () => {
                 </Button>
              </div>
              </div>
-        </div>
+        </CustomMotionDiv>
     );
 };
 

@@ -3,14 +3,15 @@ import React from 'react';
 import Header from '@/components/contact/header';
 import MessageUs from '@/components/contact/messageUs';
 import Map from '@/components/contact/map';
+import CustomMotionDiv from '@/components/shared/CustomMotionDiv';
 
 const Contact = () => {
     return (
-        <div>
+        <CustomMotionDiv>
             <Header />
             <MessageUs />
             <Map />
-        </div>
+        </CustomMotionDiv>
     );
 };
 
