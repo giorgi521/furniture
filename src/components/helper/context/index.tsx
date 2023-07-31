@@ -18,22 +18,26 @@ const reducer = (state:CartState, action:ActionType) => {
             return {
                 ...state,
                 cart: action.payload.cart,
-                total: action.payload.total,
-                quantity: action.payload.quantity
             };
         case Type.REMOVE_FROM_CART:
             return {
                 ...state,
                 cart: action.payload.cart,
-                total: action.payload.total,
-                quantity: action.payload.quantity
             };
         case Type.CLEAR_CART:
             return {
                 ...state,
-                cart: action.payload.cart,
-                total: action.payload.total,
-                quantity: action.payload.quantity
+                cart: [],
+            };
+         case Type.INCREASE_QUANTITY:   
+            return {
+                ...state,
+                quantity: state.quantity + 1
+            };
+        case Type.DECREASE_QUANTITY:   
+            return {
+                ...state,
+                quantity: state.quantity - 1
             };
         default:
             return state;

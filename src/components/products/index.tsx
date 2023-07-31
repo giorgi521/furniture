@@ -83,28 +83,14 @@ const SingleProducts = () => {
                        className='flex items-center justify-center border-r-2 pr-6 cursor-pointer text-xl'
                         onClick={()=>{
                             if(state.quantity === 0) return;
-                            dispatch({
-                                type: Type.REMOVE_FROM_CART,
-                                payload: {
-                                    cart: state.cart,
-                                    total: state.total,
-                                    quantity: state.quantity - 1
-                                }
-                            })
+                            dispatch({type: Type.DECREASE_QUANTITY, payload: {}})
                         }}
                        >-</div>
                       <div className='flex items-center justify-center'>{state.quantity}</div>
                       <div
                        className='flex items-center justify-center border-l-2 pl-6 cursor-pointer text-xl'
                        onClick={()=>{
-                        dispatch({
-                            type: Type.ADD_TO_CART,
-                            payload: {
-                                cart: state.cart,
-                                total: state.total,
-                                quantity: state.quantity + 1
-                            }
-                        })
+                        dispatch({type: Type.INCREASE_QUANTITY, payload: {}})
                        }}
                       >+</div>
                     </div>  
