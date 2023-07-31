@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
+import {CartProvider} from '@/components/helper/context';
  
 type AppPropsWithLayout = AppProps & {
   Component: {
@@ -22,7 +23,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
  
   return getLayout(
     <ApolloProvider client={apolloClient}>
+      <CartProvider>
        <Component {...pageProps} />
+      </CartProvider>
     </ApolloProvider>
   );
 }
