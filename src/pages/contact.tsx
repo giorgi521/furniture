@@ -4,6 +4,7 @@ import Header from '@/components/contact/header';
 import MessageUs from '@/components/contact/messageUs';
 import Map from '@/components/contact/map';
 import CustomMotionDiv from '@/components/shared/CustomMotionDiv';
+import {ReactElement} from 'react';
 
 const Contact = () => {
     return (
@@ -17,6 +18,6 @@ const Contact = () => {
 
 export default Contact;
 
-Contact.getLayout = (page: any) => <Layout>{page}</Layout>;
+Contact.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
 
 

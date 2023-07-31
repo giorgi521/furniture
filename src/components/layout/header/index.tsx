@@ -45,7 +45,7 @@ export function Navigation() {
     const {asPath} = useRouter();
 
   return (
-    <NavigationMenu className='px-24 py-2 flex justify-between'>
+    <NavigationMenu className='px-24 py-4 flex justify-between border-b-[1px] border-darkgray'>
       <div>
       <NavigationMenuList>
         <Link href="/" className='w-[244px] cursor-pointer'>
