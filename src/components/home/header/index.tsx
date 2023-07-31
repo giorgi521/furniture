@@ -13,7 +13,7 @@ const Header = () => {
                 <div className="tracking-[2px] md:text-xl">Black Friday in july</div>
                 <div className="text-6xl my-4">Up to 50% off</div>
                 <div className="text-2xl mb-4">Hundreds of styles available</div>
-                <Button className='w-40 md:w-[initial]'>shop now</Button>
+                <Button className='w-40 md:w-[initial] z-10'>shop now</Button>
             </div>
         </div>
     );

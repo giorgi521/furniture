@@ -65,10 +65,10 @@ const Cart = () => {
     const [coupon, setCoupon] = useState(false)
     
     return (
-        <div className='px-24 py-12'>
+        <div className='md:px-24 py-12'>
             <div className='text-4xl mb-12'>Cart</div>
-            <div className='flex justify-between border-2 border-darkgray rounded-md px-6 py-10'>
-              <div className='w-[70%] rounded-t-md overflow-hidden border-r-2 border-darkGray'>
+            <div className='flex flex-col justify-between border-2 border-darkgray rounded-md px-4 md:px-6 py-10 md:flex-row'>
+              <div className='md:w-[70%] rounded-t-md overflow-hidden border-r-2 border-darkGray'>
                 <div className='flex justify-between bg-darkGray p-4 mb-6'>
                 {titles.map((title,i) => (
                     <div key={i} className='text-md text-gray text-end'>{title}</div>
@@ -78,23 +78,23 @@ const Cart = () => {
                 {data.map(({id, product, price, quantity, subTotal}) => (
                   <div key={id} className='flex justify-between items-center border-b-[1px] border-darkgray py-2'>
                     <div className='flex items-center gap-2'>
-                    <div className='w-14 h-14 rounded-md relative bg-darkGray flex items-center justify-center'>
+                    <div className='w-10 h-10 md:w-14 md:h-14 rounded-md relative bg-darkGray flex items-center justify-center'>
                         {""}
                     </div>
-                    <div>{product}</div>
+                    <div className='text-xs md:text-base'>{product}</div>
                     </div>
-                    <div className='pr-14'>{price}</div>
-                    <div className='pr-12 flex gap-2 items-center'>
-                        <div className='border-none rounded-md px-4 text-xl bg-darkGray border-2 cursor-pointer active:bg-gold'>-</div>
+                    <div className='pr-6 md:pr-14 text-xs md:text-base'>{price}</div>
+                    <div className='pr-12 md:pr-12 flex gap-2 items-center'>
+                        <div className='border-none rounded-md px-2 md:px-4 text-xl bg-darkGray border-2 cursor-pointer active:bg-gold'>-</div>
                         <div>{quantity}</div>
-                        <div className='border-none rounded-md px-4 text-xl bg-darkGray border-2 cursor-pointer active:bg-gold'>+</div>
+                        <div className='border-none rounded-md px-2 md:px-4 text-xl bg-darkGray border-2 cursor-pointer active:bg-gold'>+</div>
                     </div>
-                    <div className='pr-12'>{subTotal}</div>
+                    <div className='pr-6 md:pr-12 text-xs md:text-base'>{subTotal}$</div>
                   </div>
                 ))}
                 </div>
               </div>
-              <div className='w-[25%] h-[380px] rounded-md overflow-hidden p-4 bg-darkGray flex flex-col justify-between'>
+              <div className='mt-4 md:mt-0 md:w-[25%] h-[380px] rounded-md overflow-hidden p-4 bg-darkGray flex flex-col justify-between'>
                <div className='text-md text-gray rounded-md bg-white p-2 mb-6'>Cart totals</div>
                <div className='flex flex-col gap-6'>
                 {total.map(({title, value},i)=> (
