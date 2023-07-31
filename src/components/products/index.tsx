@@ -82,6 +82,7 @@ const SingleProducts = () => {
                       <div
                        className='flex items-center justify-center border-r-2 pr-6 cursor-pointer text-xl'
                         onClick={()=>{
+                            if(state.quantity === 0) return;
                             dispatch({
                                 type: Type.REMOVE_FROM_CART,
                                 payload: {
