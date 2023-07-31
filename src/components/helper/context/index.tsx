@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import {createContext} from 'react';
-import {CartState, Context, ActionType,CartProviderProps} from '@/components/helper/context/type';
+import {CartState, Context, ActionType, CartProviderProps, Type} from '@/components/helper/context/type';
 
 
 export enum DefaultProductEnum {
@@ -14,21 +14,21 @@ const CartContext = createContext<Context | undefined>(undefined);
 
 const reducer = (state:CartState, action:ActionType) => {
     switch (action.type) {
-        case 'ADD_TO_CART':
+        case Type.ADD_TO_CART:
             return {
                 ...state,
                 cart: action.payload.cart,
                 total: action.payload.total,
                 quantity: action.payload.quantity
             };
-        case 'REMOVE_FROM_CART':
+        case Type.REMOVE_FROM_CART:
             return {
                 ...state,
                 cart: action.payload.cart,
                 total: action.payload.total,
                 quantity: action.payload.quantity
             };
-        case 'CLEAR_CART':
+        case Type.CLEAR_CART:
             return {
                 ...state,
                 cart: action.payload.cart,
