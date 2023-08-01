@@ -50,10 +50,7 @@ const reducer = (state:CartState, action:ActionType) => {
                                 quantity: item.quantity + QUANTITY_STEPS.INCREASE
                             }
                         }
-                        return {
-                            ...action.payload.cart,
-                            quantity: state.quantity + QUANTITY_STEPS.INCREASE
-                        };
+                        return item;
                     }),
                 ],
             };
@@ -68,10 +65,7 @@ const reducer = (state:CartState, action:ActionType) => {
                                 quantity: item.quantity - QUANTITY_STEPS.DECREASE
                             }
                         }
-                        return {
-                            ...action.payload.cart,
-                            quantity: state.quantity - QUANTITY_STEPS.DECREASE
-                        };
+                        return item;
                     }),
                 ],
             };

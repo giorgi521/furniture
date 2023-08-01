@@ -3,6 +3,7 @@ import { TYPE } from '@/components/helper/context/type';
 import Layout from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import clsx from 'clsx';
+import Image from 'next/image';
 import {ReactElement, useState} from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
@@ -43,8 +44,13 @@ const Cart = () => {
                 {cart && cart.map(({id, price, quantity,title,image}) => (
                   <div key={id} className='flex justify-between items-center border-b-[1px] border-darkgray py-2'>
                     <div className='flex items-center gap-2'>
-                    <div className='w-10 h-10 md:w-14 md:h-14 rounded-md relative bg-darkGray flex items-center justify-center'>
-                        {""}
+                    <div className='w-10 h-10 md:w-14 md:h-14 rounded-md relative bg-darkGray flex items-center justify-center overflow-hidden'>
+                        <Image
+                           src={image}
+                            alt="product"
+                            width="100"
+                            height="100"
+                        />
                     </div>
                     <div className='text-xs md:text-base'>{title}</div>
                     </div>
@@ -57,7 +63,7 @@ const Cart = () => {
                             dispatch({
                                 type: TYPE.DECREASE_QUANTITY,
                                 payload: {
-                                   id,
+                                   id:id,
                                 }
                             })
                          }}
@@ -74,7 +80,7 @@ const Cart = () => {
                             dispatch({
                                 type: TYPE.INCREASE_QUANTITY,
                                 payload: {
-                                   id,
+                                   id:id,
                                 }})}}
                          >
                           <AiOutlinePlus
@@ -120,4 +126,4 @@ const Cart = () => {
 
 export default Cart;
 
-Cart.getLayout = (page: ReactElement) => <Layout>{page}</Layout>
+Cart.getLayout = (page: ReactElement) => <Layout>{page}</Layout>    
