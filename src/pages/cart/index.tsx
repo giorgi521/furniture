@@ -88,7 +88,7 @@ const Cart = () => {
                         />
                         </div>
                     </div>
-                    <div className='pr-6 md:pr-12 text-xs md:text-base'>{price * quantity}$</div>
+                    <div className='pr-6 md:pr-12 text-xs md:text-base w-6'>{price * quantity}$</div>
                   </div>
                 ))}
                 </div>

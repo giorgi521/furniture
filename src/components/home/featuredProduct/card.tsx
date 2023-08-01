@@ -9,6 +9,8 @@ import {CardIcons} from '@/components/home/featuredProduct/helper';
 import {RadioGroup, RadioGroupItem, BORDER_OF_RADIO_GROUP_ENUM} from '@/components/ui/radio-group';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useCart } from '@/components/helper/context';
+import { TYPE } from '@/components/helper/context/type';
 
 export enum Currency {
   GEL = '₾',
@@ -47,6 +49,7 @@ const Card = ({item:{
   title,
 }}:Props) => {
   const router = useRouter();
+  const {state, dispatch} = useCart();
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [showMore, setShowMore] = useState<boolean>(false);
@@ -110,7 +113,25 @@ const Card = ({item:{
                       className='p-2 rounded-full bg-white drop-shadow-lg cursor-pointer'
                       onMouseEnter={(event)=>{handlePopoverOpen(event,i);}}
                       onMouseLeave={handlePopoverClose}
-                      href={`/product/${id}`}
+                      onClick={
+                        ()=> {
+                          if(i === 1) {
+                            dispatch({
+                              type: TYPE.ADD_TO_CART,
+                              payload: {
+                                cart: {
+                                  id,
+                                  title,
+                                  price: minPrice,
+                                  quantity: 1,
+                                  image: choosenImage
+                                }
+                              }
+                            })
+                          }
+                        }
+                      }
+                      href={ i === 1 ? `/cart` :`/product/${id}`}
                       >
                        {icon}
                     </Link>
