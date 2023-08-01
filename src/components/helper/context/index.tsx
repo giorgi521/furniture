@@ -1,11 +1,16 @@
-import React, { useReducer } from 'react';
-import {createContext} from 'react';
-import {CartState, Context, ActionType, CartProviderProps, Type} from '@/components/helper/context/type';
+import React, { useMemo, useReducer } from 'react';
+import {createContext,useContext} from 'react';
+import {CartState, Context, ActionType, CartProviderProps, TYPE, CartItem} from '@/components/helper/context/type';
 
 
-export enum DefaultProductEnum {
+export enum INITIAL_STATE {
     total = 0,
     quantity = 0,
+}
+
+export enum QUANTITY_STEPS {
+    INCREASE = 1,
+    DECREASE = 1,
 }
 
 
@@ -14,30 +19,61 @@ const CartContext = createContext<Context | undefined>(undefined);
 
 const reducer = (state:CartState, action:ActionType) => {
     switch (action.type) {
-        case Type.ADD_TO_CART:
+        case TYPE.ADD_TO_CART:
             return {
                 ...state,
-                cart: action.payload.cart,
+                cart: [
+                    ...state.cart,
+                    action.payload.cart
+                ],
             };
-        case Type.REMOVE_FROM_CART:
+        case TYPE.REMOVE_FROM_CART:
             return {
                 ...state,
-                cart: action.payload.cart,
+                cart: [
+                    ...state.cart.filter((item) => item.id !== action.payload.id)
+                ],
             };
-        case Type.CLEAR_CART:
+        case TYPE.CLEAR_CART:
             return {
                 ...state,
                 cart: [],
             };
-         case Type.INCREASE_QUANTITY:   
+         case TYPE.INCREASE_QUANTITY:   
             return {
                 ...state,
-                quantity: state.quantity + 1
+                cart: [
+                    ...state.cart.map((item) => {
+                        if (item.id === action.payload.id) {
+                            return {
+                                ...item,
+                                quantity: item.quantity + QUANTITY_STEPS.INCREASE
+                            }
+                        }
+                        return {
+                            ...action.payload.cart,
+                            quantity: state.quantity + QUANTITY_STEPS.INCREASE
+                        };
+                    }),
+                ],
             };
-        case Type.DECREASE_QUANTITY:   
+        case TYPE.DECREASE_QUANTITY:   
             return {
                 ...state,
-                quantity: state.quantity - 1
+                cart: [
+                    ...state.cart.map((item) => {
+                        if (item.id === action.payload.id) {
+                            return {
+                                ...item,
+                                quantity: item.quantity - QUANTITY_STEPS.DECREASE
+                            }
+                        }
+                        return {
+                            ...action.payload.cart,
+                            quantity: state.quantity - QUANTITY_STEPS.DECREASE
+                        };
+                    }),
+                ],
             };
         default:
             return state;
@@ -49,15 +85,18 @@ const reducer = (state:CartState, action:ActionType) => {
 const CartProvider = ({children}:CartProviderProps) => {
     const initialState = {
         cart: [],
-        total: DefaultProductEnum['total'],
-        quantity: DefaultProductEnum['quantity']
+        total: INITIAL_STATE['total'],
+        quantity: INITIAL_STATE['quantity']
     }
     const [state, dispatch] = useReducer(reducer, initialState);
+    console.log(state)
 
-    const value = {
-      state,
-      dispatch
-    }
+    const value = useMemo(() => {
+        return {
+            state,
+            dispatch
+        }
+    }, [state, dispatch])
 
 
     return (
@@ -70,7 +109,7 @@ const CartProvider = ({children}:CartProviderProps) => {
 
 
 const useCart = ()=> {
-    const context = React.useContext(CartContext);
+    const context = useContext(CartContext);
     if (context === undefined) {
         throw new Error('useCart must be used within a CartProvider');
     }

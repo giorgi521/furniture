@@ -5,7 +5,7 @@ export interface CartProviderProps {
 }
 
 export interface CartItem {
-    id: number;
+    id: string;
     title: string;
     price: number;
     image: string;
@@ -24,7 +24,7 @@ export interface Context {
 }
 
 
-export enum Type {
+export enum TYPE {
     ADD_TO_CART = 'ADD_TO_CART',
     REMOVE_FROM_CART = 'REMOVE_FROM_CART',
     CLEAR_CART = 'CLEAR_CART',
@@ -33,6 +33,6 @@ export enum Type {
 }
 
 export interface ActionType {
-    type: Type;
+    type: TYPE;
     payload: any;
 }

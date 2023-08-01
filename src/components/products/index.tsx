@@ -12,11 +12,16 @@ import clsx from 'clsx';
 import {Benefits} from '@/components/products/helper';
 import StyledBreadcrumb from '@/components/shared/breadCrumbs';
 import { useCart } from '../helper/context';
-import {Type} from '@/components/helper/context/type';
+import {TYPE} from '@/components/helper/context/type';
+import { AiOutlineMinus } from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
+import {QUANTITY_STEPS} from '@/components/helper/context/index';
   
 
 const SingleProducts = () => {
-     const {state, dispatch} = useCart();
+     const router = useRouter();
+     const [quantity, setQuantity] = useState(0);
+     const { dispatch} = useCart();
      const route = useRouter();
      const { data:{
             minPrice,
@@ -80,21 +85,49 @@ const SingleProducts = () => {
                       <div className='flex gap-4 border-y-2 border-darkGray py-6'>
                       <div className='flex items-center rounded border-2 gap-6 px-6'>
                       <div
-                       className='flex items-center justify-center border-r-2 pr-6 cursor-pointer text-xl'
+                       className={clsx(`flex items-center justify-center border-r-2 pr-6
+                        ${quantity == 0 && 'cursor-not-allowed'} cursor-pointer text-xl`)}
                         onClick={()=>{
-                            if(state.quantity === 0) return;
-                            dispatch({type: Type.DECREASE_QUANTITY, payload: {}})
+                            if(quantity == 0) return;
+                            setQuantity((prev)=>prev - QUANTITY_STEPS.DECREASE)
                         }}
-                       >-</div>
-                      <div className='flex items-center justify-center'>{state.quantity}</div>
+                       >
+                        <AiOutlineMinus 
+                        className='text-xl'
+                        />
+                       </div>
+                      <div className='flex items-center justify-center'>{quantity}</div>
                       <div
                        className='flex items-center justify-center border-l-2 pl-6 cursor-pointer text-xl'
-                       onClick={()=>{
-                        dispatch({type: Type.INCREASE_QUANTITY, payload: {}})
+                        onClick={()=>{
+                          setQuantity((prev)=>prev + QUANTITY_STEPS.INCREASE)
                        }}
-                      >+</div>
+                      >
+                        <AiOutlinePlus 
+                        className='text-xl'
+                        />
+                      </div>
                     </div>  
-                    <Button>Add To Cart</Button>
+                    <Button
+                     disabled={quantity == 0}
+                     onClick={
+                        ()=> {
+                          dispatch({
+                            type: TYPE.ADD_TO_CART,
+                            payload: {
+                                cart: {
+                                    id: route.query.id,
+                                    title,
+                                    image: choosenImage,
+                                    price: maxPrice,
+                                    quantity: quantity,
+                                }
+                            }
+                        }),
+                        router.push('/cart')
+                        }
+                     }
+                    >Add To Cart</Button>
                 </div>
 
                 <div className='flex flex-col gap-2 border-b-2 border-darkGray py-6'>
