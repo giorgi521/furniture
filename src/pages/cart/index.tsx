@@ -7,6 +7,16 @@ import Image from 'next/image';
 import {ReactElement, useMemo, useState} from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
+export enum TOTAL_CART_VALUE {
+    totalQuantity = 'totalQuantity',
+    totalPrice = 'totalPrice',
+}
+
+interface Props {
+    [TOTAL_CART_VALUE.totalQuantity]: number;
+    [TOTAL_CART_VALUE.totalPrice]: number;
+}
+
 const titles = [
     'product',
     'price',
@@ -17,11 +27,11 @@ const titles = [
 const TOTAL_CART = [
      {
         title: 'total items',
-        value: 'totalQuantity'
+        value: TOTAL_CART_VALUE.totalQuantity
     },
     {
         title: 'total price',
-        value: 'totalPrice'
+        value: TOTAL_CART_VALUE.totalPrice
      }
 ]
 
@@ -30,12 +40,12 @@ const Cart = () => {
     const {state:{cart}, dispatch} = useCart();
     const [coupon, setCoupon] = useState(false)
 
-    const ReduceTotalValueofCart = useMemo(()=> {
+    const ReduceTotalValueofCart = ():Props=> {
         return {
             totalQuantity: cart.reduce((acc, item) =>acc + item.quantity, 0),
             totalPrice: cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
         }
-    },[cart])
+    }
 
 
      const CartTotal = TOTAL_CART.map(({title, value}) => ({    
