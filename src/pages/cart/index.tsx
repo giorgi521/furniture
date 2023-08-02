@@ -40,19 +40,12 @@ const Cart = () => {
     const {state:{cart}, dispatch} = useCart();
     const [coupon, setCoupon] = useState(false)
 
-    const ReduceTotalValueofCart = ():Props=> {
+    const ReduceTotalValueofCart = useMemo(():Props=> {
         return {
             totalQuantity: cart.reduce((acc, item) =>acc + item.quantity, 0),
             totalPrice: cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
         }
-    }
-
-
-     const CartTotal = TOTAL_CART.map(({title, value}) => ({    
-        title,
-        value:ReduceTotalValueofCart[value as keyof typeof ReduceTotalValueofCart]
-        
-     }))
+    },[cart])
 
     return (
         <div className='md:px-24 py-12'>
@@ -120,10 +113,10 @@ const Cart = () => {
               <div className='mt-4 md:mt-0 md:w-[25%] h-[380px] rounded-md overflow-hidden p-4 bg-darkGray flex flex-col justify-between'>
                <div className='text-md text-gray rounded-md bg-white p-2 mb-6'>Cart totals</div>
                <div className='flex flex-col gap-6'>
-                {CartTotal.map(({title, value},i)=> (
+                {TOTAL_CART.map(({title, value},i)=> (
                 <div key={i} className='flex justify-between py-2 border-b-[1px] border-darkgray'>
                     <div>{title}</div>
-                    <div>{value}$</div>
+                    <div>{ReduceTotalValueofCart[value as keyof typeof ReduceTotalValueofCart]}$</div>
                 </div>))}
                </div>
                <div>
