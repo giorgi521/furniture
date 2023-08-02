@@ -24,7 +24,7 @@ const Footer = () => {
                         </div>
                   </div>
             ))}
-            <div>
+            <div className='hidden md:inline'>
                 <div>Subscribe</div>
                 <InputSubscription />
             </div>

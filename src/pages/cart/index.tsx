@@ -4,7 +4,7 @@ import Layout from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import clsx from 'clsx';
 import Image from 'next/image';
-import {ReactElement, useState} from 'react';
+import {ReactElement, useMemo, useState} from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 const titles = [
@@ -14,21 +14,35 @@ const titles = [
     'subTotal'
 ]
 
-const TOTAL = [
+const TOTAL_CART = [
      {
-        title: 'subtotal',
-        value: 100
+        title: 'total items',
+        value: 'totalQuantity'
     },
     {
-        title: 'total',
-        value: 100
+        title: 'total price',
+        value: 'totalPrice'
      }
 ]
 
 
 const Cart = () => {
-    const {state:{cart,total}, dispatch} = useCart();
+    const {state:{cart}, dispatch} = useCart();
     const [coupon, setCoupon] = useState(false)
+
+    const ReduceTotalValueofCart = useMemo(()=> {
+        return {
+            totalQuantity: cart.reduce((acc, item) =>acc + item.quantity, 0),
+            totalPrice: cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+        }
+    },[cart])
+
+
+     const CartTotal = TOTAL_CART.map(({title, value}) => ({    
+        title,
+        value:ReduceTotalValueofCart[value as keyof typeof ReduceTotalValueofCart]
+        
+     }))
 
     return (
         <div className='md:px-24 py-12'>
@@ -52,7 +66,7 @@ const Cart = () => {
                             height="100"
                         />
                     </div>
-                    <div className='text-xs md:text-base'>{title}</div>
+                    <div className='text-xs md:text-base w-20'>{title}</div>
                     </div>
                     <div className='pr-6 md:pr-14 text-xs md:text-base'>{price}$</div>
                     <div className='pr-12 md:pr-12 flex gap-2 items-center'>
@@ -96,7 +110,7 @@ const Cart = () => {
               <div className='mt-4 md:mt-0 md:w-[25%] h-[380px] rounded-md overflow-hidden p-4 bg-darkGray flex flex-col justify-between'>
                <div className='text-md text-gray rounded-md bg-white p-2 mb-6'>Cart totals</div>
                <div className='flex flex-col gap-6'>
-                {TOTAL.map(({title, value},i)=> (
+                {CartTotal.map(({title, value},i)=> (
                 <div key={i} className='flex justify-between py-2 border-b-[1px] border-darkgray'>
                     <div>{title}</div>
                     <div>{value}$</div>

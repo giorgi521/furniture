@@ -58,19 +58,19 @@ const ProductCategorys = () => {
       router.push({
          pathname: router.pathname,
          query: {slug:slug, sort: value},
-      },undefined,{
+      },{},{
          scroll: false
       })
     }
 
     return (
         <CustomMotionDiv
-          className="flex flex-col justify-center items-center py-16"
+          className="flex flex-col justify-center items-center py-16 bg px-4 sm:px-0"
          >
-            <div className="w-[70%]">
+            <div className="w-full sm:w-[70%]">
             <CustomizedBreadcrumbs />
             <div className="text-6xl mt-4 mb-8">{slug}</div>
-            <div className="text-base mb-4 text-gray flex justify-between w-full">
+            <div className="text-base mb-4 text-gray flex justify-between items-center sm:justify-between sm:w-full">
                   <div>
                     showing
                   <span className="px-2">{data.length}</span>
@@ -87,7 +87,7 @@ const ProductCategorys = () => {
                       </SelectContent>
                    </Select>
             </div>
-            <div className="flex flex-wrap justify-between ">
+            <div className="flex flex-wrap justify-center sm:justify-between">
              {loading ? <FurnitureSkeleton /> : data.map((item,i)=>(
                 <div key={i} className="mb-10">
                    <Card item={item}/>

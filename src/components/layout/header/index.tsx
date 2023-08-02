@@ -47,11 +47,11 @@ export function Navigation() {
   return (
     <NavigationMenu className='px-24 py-4 flex justify-between border-b-[1px] border-darkgray'>
       <div>
-      <NavigationMenuList>
+      <NavigationMenuList className='hidden sm:flex'>
         <Link href="/" className='w-[244px] cursor-pointer'>
             <Image src={logo} alt="logo" />
         </Link>
-        <NavigationMenuItem>
+        <NavigationMenuItem >
           <NavigationMenuTrigger>Category</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
