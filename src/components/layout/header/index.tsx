@@ -24,6 +24,8 @@ import {OTHER} from '@/components/layout/header/helper';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import SheedDesc from './cart';
+import { Badge } from '@mui/material';
+import { useCart } from '@/components/helper/context';
 
 
 const components: { title: string; href: string; description: string }[] = [
@@ -53,6 +55,7 @@ const components: { title: string; href: string; description: string }[] = [
 ]
 
 export function Navigation() {
+    const {state:{cart}} = useCart();
     const {asPath} = useRouter();
 
   return (
@@ -111,9 +114,11 @@ export function Navigation() {
     </div>
     <Sheet>
         <SheetTrigger>
+        <Badge badgeContent={Number(cart.length)} color="success">
           <FaOpencart 
             className='text-3xl cursor-pointer hover:fill-textHv'
           />
+        </Badge>
         </SheetTrigger>
 
 

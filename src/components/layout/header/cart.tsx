@@ -51,7 +51,7 @@ const SheedDesc = () => {
               <Image src={image} alt={title} width={100} height={100} />
             </div>
             <div className='flex flex-col gap-2'>
-                <div>product title</div>
+                <div>{title}</div>
                 <div className='flex gap-2 items-center'>
                 <Box
                  quantity={quantity}
