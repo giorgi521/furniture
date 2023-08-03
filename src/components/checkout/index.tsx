@@ -139,7 +139,7 @@ const Checkout = () => {
                         Place order
                     </Button>
                 </div>
-                <div className='w-[40%]'>
+               {Boolean(totalPrice) && <div className='w-[40%]'>
                 <Sections title="Your order">
                     <div className='rounded-md border-darkGray border-2 h-[400px] py-4 flex flex-col justify-between'>
                       <div className='flex justify-between border-b-2 border-darkGray px-4'>
@@ -169,7 +169,7 @@ const Checkout = () => {
                       </div>
                     </div>
                 </Sections>
-                </div>
+                </div>}
             </div>
         </div>
     );
