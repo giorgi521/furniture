@@ -110,7 +110,11 @@ const SheedDesc = () => {
             >VIEW CART</Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button>CHECKOUT</Button>
+              <Button
+                onClick={()=> {
+                    Router.push('/checkout')
+                }}
+              >CHECKOUT</Button>
             </SheetClose>
           </div>
         </div>
