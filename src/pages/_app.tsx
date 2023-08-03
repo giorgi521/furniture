@@ -23,9 +23,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
  
   return getLayout(
     <ApolloProvider client={apolloClient}>
-      <CartProvider>
        <Component {...pageProps} />
-      </CartProvider>
     </ApolloProvider>
   );
 }

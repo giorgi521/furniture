@@ -3,6 +3,15 @@ import logo from 'public/assets/img/logo-regular.png';
 import * as React from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { FaOpencart } from "react-icons/fa"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,6 +23,8 @@ import {
 import {OTHER} from '@/components/layout/header/helper';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
+import SheedDesc from './cart';
+
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -98,9 +109,21 @@ export function Navigation() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </div>
-   <div>
-     login
-   </div>
+    <Sheet>
+        <SheetTrigger>
+          <FaOpencart 
+            className='text-3xl cursor-pointer hover:fill-textHv'
+          />
+        </SheetTrigger>
+
+
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle className='text-xl'>Shopping Cart</SheetTitle>
+          </SheetHeader>
+            <SheedDesc />
+        </SheetContent>
+      </Sheet>
     </NavigationMenu>
   )
 }
