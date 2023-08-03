@@ -45,6 +45,8 @@ const SingleProducts = () => {
      const radioGrounHandle = (value: string) => {
         setChoosenImage(value);
        };
+
+       console.log(router.query.id)
      
     return (
         <div className='flex justify-between px-24 py-14'>
@@ -116,7 +118,7 @@ const SingleProducts = () => {
                             type: TYPE.ADD_TO_CART,
                             payload: {
                                 cart: {
-                                    id: route.query.id,
+                                    id: route.query.id as string,
                                     title,
                                     image: choosenImage,
                                     price: maxPrice,
