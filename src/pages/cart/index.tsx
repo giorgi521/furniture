@@ -103,7 +103,7 @@ const Cart = () => {
                           className='text-xl'
                          />
                         </div>
-                        <div>{quantity}</div>
+                        <div className='w-4 text-center'>{quantity}</div>
                         <div
                          className='border-none rounded-md px-2 md:px-4 text-xl py-1 bg-darkGray border-2 cursor-pointer active:bg-gold'
                          onClick={()=>{
