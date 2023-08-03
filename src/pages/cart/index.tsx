@@ -49,7 +49,20 @@ const Cart = () => {
 
     return (
         <div className='md:px-24 py-12'>
-            <div className='text-4xl mb-12'>Cart</div>
+            <div className='flex w-full justify-between items-center mb-8'>
+            <div className='text-4xl'>Cart</div>
+            <div>
+                <Button
+                 variant="delete"
+                 onClick={() => dispatch(
+                    {
+                        type: TYPE.CLEAR_CART,
+                    })}
+                 >
+                    delete all items
+                 </Button>
+            </div>
+            </div>
             <div className='flex flex-col justify-between border-2 border-darkgray rounded-md px-4 md:px-6 py-10 md:flex-row'>
               <div className='md:w-[70%] rounded-t-md overflow-hidden border-r-2 border-darkGray'>
                 <div className='flex justify-between bg-darkGray p-4 mb-6'>

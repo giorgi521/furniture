@@ -32,7 +32,17 @@ export enum TYPE {
     DECREASE_QUANTITY = 'DECREASE_QUANTITY',
 }
 
-export interface ActionType {
-    type: TYPE;
-    payload: any;
-}
+export type ActionType = | 
+    {
+        type: TYPE.CLEAR_CART,
+        payload?:any 
+    } | {
+        type: TYPE.ADD_TO_CART,
+        payload: { cart: CartItem }
+    } | {
+        type: TYPE.INCREASE_QUANTITY | TYPE.DECREASE_QUANTITY,
+        payload: { id: string }
+    } | {
+        type: TYPE.REMOVE_FROM_CART,
+        payload: {  id: string }
+    }

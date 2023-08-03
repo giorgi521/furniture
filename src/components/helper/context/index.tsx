@@ -1,6 +1,6 @@
 import React, { useMemo, useReducer } from 'react';
 import {createContext,useContext} from 'react';
-import {CartState, Context, ActionType, CartProviderProps, TYPE, CartItem} from '@/components/helper/context/type';
+import {CartState, Context, ActionType, CartProviderProps, TYPE} from '@/components/helper/context/type';
 
 
 export enum INITIAL_STATE {
@@ -12,7 +12,6 @@ export enum QUANTITY_STEPS {
     INCREASE = 1,
     DECREASE = 1,
 }
-
 
 
 const CartContext = createContext<Context | undefined>(undefined);
