@@ -127,9 +127,16 @@ const Checkout = () => {
                     <Sections title="Payment">
                     <Accordion type="single" collapsible>
                         <AccordionItem value="item-1">
-                            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                            <AccordionTrigger>Direct bank transfer</AccordionTrigger>
                             <AccordionContent>
-                            Yes. It adheres to the WAI-ARIA design pattern.
+                             Make your payment directly into our bank account. Please use your Order ID as the payment reference.
+                             Your order will not be shipped until the funds have cleared in our account.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-2">
+                            <AccordionTrigger>Cash on delivery</AccordionTrigger>
+                            <AccordionContent>
+                            Pay with cash upon delivery.
                             </AccordionContent>
                         </AccordionItem>
                         </Accordion>
@@ -147,13 +154,13 @@ const Checkout = () => {
                          <div className='text-gray'>Subtotal</div>
                       </div>
                       <div className='py-4 h-[250px] overflow-auto'>
-                        {cart.map(({image,title,id,quantity,price})=> (
+                        {cart.map(({image,title,quantity,id,price})=> (
                             <div key={id} className='flex justify-between border-b-2 border-darkGray px-4 py-2 items-center'>
                                 <div className='flex gap-4 items-center'>
                                 <div className='w-10 h-10 md:w-16 md:h-16 rounded-md relative bg-darkGray flex items-center justify-center overflow-hidden'>   
                                 <Image src={image} alt={title} width={100} height={100} />
                                 </div>
-                                <div>{title}</div>
+                                <div>{title} ({quantity}x)</div>
                                  </div>
                                  <div>{price}$</div>
                             </div>
