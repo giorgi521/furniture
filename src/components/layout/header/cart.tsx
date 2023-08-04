@@ -47,7 +47,7 @@ const SheedDesc = () => {
           <div className='h-[400px] w-full overflow-auto '>
             {cart.map(({id, title, image, price, quantity})=> (
             <div key={id} className='flex justify-between items-start w-full border-b-2 py-4 border-darkGray'>
-             <div className='w-10 h-10 md:w-16 md:h-16 rounded-md relative bg-darkGray flex items-center justify-center overflow-hidden'>   
+             <div className='min-w-8 min-h-8 md:w-16 md:h-16 rounded-md relative bg-darkGray flex items-center justify-center overflow-hidden'>   
               <Image src={image} alt={title} width={100} height={100} />
             </div>
             <div className='flex flex-col gap-2'>

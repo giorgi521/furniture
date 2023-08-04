@@ -4,6 +4,7 @@ import Layout from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import {ReactElement, useMemo, useState} from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
@@ -37,6 +38,8 @@ const TOTAL_CART = [
 
 
 const Cart = () => {
+
+    const router = useRouter();
     const {state:{cart}, dispatch} = useCart();
     const [coupon, setCoupon] = useState(false)
 
@@ -146,7 +149,11 @@ const Cart = () => {
                     className='border-2 border-darkgray rounded-md h-10 p-2 w-full'/>
                      <Button className='h-10 z-10'>Submit</Button>
                </div>}
-               <Button className='z-10 my-4'>procced to checkout</Button>
+               <Button 
+               onClick={() => {
+                router.push('/checkout')
+                }}
+               className='z-10 my-4'>procced to checkout</Button>
                </div>   
               </div>
             </div>

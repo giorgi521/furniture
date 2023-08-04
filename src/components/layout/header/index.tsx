@@ -7,7 +7,6 @@ import { FaOpencart } from "react-icons/fa"
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -59,8 +58,8 @@ export function Navigation() {
     const {asPath} = useRouter();
 
   return (
-    <NavigationMenu className='px-24 py-4 flex justify-between border-b-[1px] border-darkgray'>
-      <div>
+    <NavigationMenu className='px-4 md:px-24 py-4 flex justify-between border-b-[1px] border-darkgray'>
+      <div className='hidden md:flex'>
       <NavigationMenuList className='hidden sm:flex'>
         <Link href="/" className='w-[244px] cursor-pointer'>
             <Image src={logo} alt="logo" />
@@ -112,6 +111,9 @@ export function Navigation() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </div>
+    <Link href="/" className='md:hidden w-[100px] cursor-pointer'>
+            <Image src={logo} alt="logo" />
+        </Link>
     <Sheet>
         <SheetTrigger>
         <Badge badgeContent={Number(cart.length)} color="success">
@@ -120,9 +122,8 @@ export function Navigation() {
           />
         </Badge>
         </SheetTrigger>
-
-
-        <SheetContent>
+      
+        <SheetContent className="w-full md:w-['initial']">
           <SheetHeader>
             <SheetTitle className='text-xl'>Shopping Cart</SheetTitle>
           </SheetHeader>

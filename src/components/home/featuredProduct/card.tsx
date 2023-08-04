@@ -86,11 +86,6 @@ const Card = ({item:{
 
    const open = Boolean(anchorEl);
 
-   const HandleFurnitureRounte = ()=> {
-      router.push(`/product/${id}`);
-   };
-
-
    const radioGrounHandle = (value: string) => {
     setChoosenImage(value);
    };

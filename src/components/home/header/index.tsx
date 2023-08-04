@@ -3,6 +3,10 @@ import backgroundImage from 'public/assets/img/background-image.jpeg';
 import {Button} from '@/components/ui/button';
 
 const Header = () => {
+    const scrollToElement = () => {
+        const container = document.getElementById('products');
+        container?.scrollIntoView({ behavior: 'smooth' });
+    };
     return (
         <div className='h-[90vh] w-full flex items-center justify-center p-12 bg-fixed bg-cover bg-no-repeat bg-center top-0 md:justify-start md:p-24'
         style={{
@@ -13,7 +17,9 @@ const Header = () => {
                 <div className="tracking-[2px] md:text-xl">Black Friday in july</div>
                 <div className="text-6xl my-4">Up to 50% off</div>
                 <div className="text-2xl mb-4">Hundreds of styles available</div>
-                <Button className='w-40 md:w-[initial] z-10'>shop now</Button>
+                <Button
+                 onClick={() => scrollToElement()}
+                 className='w-40 md:w-[initial] z-10'>shop now</Button>
             </div>
         </div>
     );

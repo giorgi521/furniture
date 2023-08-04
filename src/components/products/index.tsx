@@ -46,8 +46,6 @@ const SingleProducts = () => {
         setChoosenImage(value);
        };
 
-       console.log(router.query.id)
-     
     return (
         <div className='flex justify-between px-24 py-14'>
             <Image

@@ -82,7 +82,6 @@ const CartProvider = ({children}:CartProviderProps) => {
         quantity: INITIAL_STATE['quantity']
     }
     const [state, dispatch] = useReducer(reducer, initialState);
-    console.log(state)
 
     const value = useMemo(() => {
         return {
