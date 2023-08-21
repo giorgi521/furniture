@@ -7,11 +7,11 @@ import InputSubscription from './input';
 const Footer = () => {
     return (
         <div className="flex flex-col bg-darkGray w-full ">
-        <div className='flex justify-between items-start h-[400px] pt-[50px] px-24'>
-            <div className='w-[244px]'>
+        <div className='flex justify-between items-start h-[400px] pt-[50px] px-4 md:px-24'>
+            <div className='md:w-[244px]'>
                <Image src={logo} alt="logo" />
             </div>
-            <div className='flex gap-32'>
+            <div className='flex gap-8 md:gap-32 '>
             {FOOTERINFO.map(({id,title, links}) => (
                   <div key={id} className='flex flex-col gap-[3.2em]'>
                         <h3 className='text-xl'>{title}</h3>
@@ -30,8 +30,8 @@ const Footer = () => {
             </div>
             </div>
         </div>
-        <div className="py-4 px-24 rounded border-t-[1px] border-lightGray flex justify-between">
-            <div className="text-sm text-gray">Copyright © 2023 Furniture Shop | Powered by Giorgi gogoladze</div>
+        <div className="py-4 px-4 md:px-24 rounded border-t-[1px] border-lightGray flex justify-between">
+            <div className="text-sm text-gray w-[240px] md:w-[initial]">Copyright © 2023 Furniture Shop | Powered by Giorgi gogoladze</div>
             <div className="flex gap-6">
                 {SOCIALMEDIA.map(({id, icon, link}) => (
                     <a href={link} key={id}>
